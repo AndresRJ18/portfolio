@@ -3,80 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Andrés Rodas - Computer Engineering Student specializing in Cloud Computing, Distributed Systems, and AI">
+    <meta name="description" content="Andrés Rodas - Computer Engineering Student specializing in Cloud Computing (AWS, Azure) and Artificial Intelligence">
+    <meta name="keywords" content="Cloud Computing, AWS, Azure, AI, Machine Learning, Computer Engineering">
+    <meta name="author" content="Andrés Rodas">
     <title>Andrés Rodas | Cloud & AI Engineer</title>
     <link rel="stylesheet" href="styles.css">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-theme="dark">
+    <!-- Animated Background Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">AR</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active" data-en="Home" data-es="Inicio">Inicio</a></li>
+                <li><a href="#about" class="nav-link" data-en="About" data-es="Sobre mí">Sobre mí</a></li>
+                <li><a href="#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <!-- Language Toggle -->
+                <button class="lang-toggle" id="langToggle" aria-label="Change language">
+                    <span class="lang-option active" data-lang="es">ES</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-option" data-lang="en">EN</span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
+        <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-tag">
-                    <span class="blink">▊</span> Available for opportunities
+                <div class="hero-badge" data-en="Available for Opportunities" data-es="Disponible para Oportunidades">
+                    <span class="badge-dot"></span>
+                    Disponible para Oportunidades
                 </div>
+                
                 <h1 class="hero-title">
-                    <span class="name-line">Andrés Rodas</span>
+                    <span class="title-greeting" data-en="Hi, I'm" data-es="Hola, soy">Hola, soy</span>
+                    <span class="title-name">Andrés Rodas</span>
                 </h1>
-                <p class="hero-subtitle">
-                    Computer Engineering Student<br>
-                    <span class="accent">Cloud & AI Enthusiast</span>
+                
+                <h2 class="hero-subtitle">
+                    <span class="subtitle-role" data-en="Computer Engineering Student" data-es="Estudiante de Ingeniería Informática">
+                        Estudiante de Ingeniería Informática
+                    </span>
+                    <span class="subtitle-focus" data-en="Cloud & AI Enthusiast" data-es="Entusiasta de Cloud & AI">
+                        Entusiasta de Cloud & AI
+                    </span>
+                </h2>
+                
+                <p class="hero-description" data-en="Passionate about building scalable cloud infrastructure and intelligent systems. Focused on AWS, learning Azure, and exploring the intersection of cloud computing and artificial intelligence." data-es="Apasionado por construir infraestructura cloud escalable y sistemas inteligentes. Enfocado en AWS, aprendiendo Azure y explorando la intersección entre cloud computing e inteligencia artificial.">
+                    Apasionado por construir infraestructura cloud escalable y sistemas inteligentes. 
+                    Enfocado en AWS, aprendiendo Azure y explorando la intersección entre cloud computing e inteligencia artificial.
                 </p>
-                <p class="hero-description">
-                    Building scalable systems and intelligent solutions.<br>
-                    Focused on distributed architectures, cloud infrastructure, and machine learning engineering.
-                </p>
+                
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="https://github.com/andresrodas" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        GitHub
-                    </a>
-                    <a href="https://linkedin.com/in/andresrodas" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        LinkedIn
-                    </a>
-                    <a href="/cv.pdf" target="_blank" class="btn btn-secondary">
+                    <a href="#projects" class="btn btn-primary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
                         </svg>
-                        Resume
+                        <span data-en="View Projects" data-es="Ver Proyectos">Ver Proyectos</span>
+                    </a>
+                    <a href="#cv" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-en="Download CV" data-es="Descargar CV">Descargar CV</span>
                     </a>
                 </div>
             </div>
+
             <div class="hero-visual">
-                <div class="code-window">
-                    <div class="window-header">
-                        <div class="window-buttons">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="window-title">~/cloud-architecture</div>
+                <div class="profile-container">
+                    <div class="profile-glow"></div>
+                    <img src="assets/img/yo.png" alt="Andrés Rodas" class="profile-image">
+                    <div class="profile-ring"></div>
+                </div>
+                
+                <!-- Floating Tech Icons -->
+                <div class="floating-tech">
+                    <div class="tech-icon" style="--delay: 0s">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.5 2c-2.1 0-4.1.8-5.6 2.2L2.2 9.9c-.3.3-.3.8 0 1.1l10.8 10.8c.3.3.8.3 1.1 0l5.7-5.7c1.5-1.5 2.2-3.5 2.2-5.6 0-4.4-3.6-8-8-8zm0 14c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"/>
+                        </svg>
                     </div>
-                    <div class="window-content">
-                        <pre><code><span class="code-comment"># Infrastructure as Code</span>
-<span class="code-keyword">resource</span> <span class="code-string">"aws_instance"</span> <span class="code-string">"web_server"</span> {
-  <span class="code-property">ami</span>           = <span class="code-string">"ami-0c55b159cbfafe1f0"</span>
-  <span class="code-property">instance_type</span> = <span class="code-string">"t3.micro"</span>
-  
-  <span class="code-property">tags</span> = {
-    <span class="code-property">Name</span>        = <span class="code-string">"ProductionServer"</span>
-    <span class="code-property">Environment</span> = <span class="code-string">"prod"</span>
-  }
-}</code></pre>
+                    <div class="tech-icon" style="--delay: 2s">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="tech-icon" style="--delay: 4s">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.4 4.4l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.4-4.4l4.2-4.2"/>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -87,41 +151,175 @@
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">$ whoami</span>
-                <h2 class="section-title">About Me</h2>
+                <span class="section-label" data-en="Get to know me" data-es="Conóceme">Conóceme</span>
+                <h2 class="section-title" data-en="About Me" data-es="Sobre Mí">Sobre Mí</h2>
             </div>
+
             <div class="about-content">
                 <div class="about-text">
-                    <p>
-                        Computer Engineering student with a strong focus on <strong>cloud-native architectures</strong> 
-                        and <strong>distributed systems</strong>. I design and implement scalable solutions that leverage 
-                        modern cloud platforms and infrastructure automation.
+                    <p data-en="I'm a Computer Engineering student with a strong passion for cloud computing and artificial intelligence. Currently, I'm specializing in AWS cloud services, where I've gained hands-on experience with EC2, S3, Lambda, and CloudFormation." data-es="Soy estudiante de Ingeniería Informática con una fuerte pasión por la computación en la nube e inteligencia artificial. Actualmente, me estoy especializando en servicios cloud de AWS, donde he adquirido experiencia práctica con EC2, S3, Lambda y CloudFormation.">
+                        Soy estudiante de Ingeniería Informática con una fuerte pasión por la computación en la nube e inteligencia artificial. 
+                        Actualmente, me estoy especializando en servicios cloud de AWS, donde he adquirido experiencia práctica con EC2, S3, Lambda y CloudFormation.
                     </p>
-                    <p>
-                        My work spans from containerized microservices to machine learning pipelines, always prioritizing 
-                        reliability, observability, and cost-efficiency. I believe in infrastructure as code, continuous 
-                        integration, and building systems that can handle real-world scale.
+                    <p data-en="I'm actively learning Microsoft Azure to broaden my cloud expertise and understand multi-cloud architectures. My technical interests span across cloud infrastructure, networking fundamentals, AI/ML fundamentals, and IoT systems." data-es="Estoy aprendiendo activamente Microsoft Azure para ampliar mi experiencia en la nube y comprender arquitecturas multi-cloud. Mis intereses técnicos abarcan infraestructura cloud, fundamentos de redes, fundamentos de IA/ML y sistemas IoT.">
+                        Estoy aprendiendo activamente Microsoft Azure para ampliar mi experiencia en la nube y comprender arquitecturas multi-cloud. 
+                        Mi interés técnico abarca infraestructura cloud, fundamentos de redes, fundamentos de IA/ML y sistemas IoT.
                     </p>
-                    <p>
-                        Currently exploring the intersection of <strong>cloud computing</strong> and <strong>artificial intelligence</strong>, 
-                        with particular interest in MLOps, serverless architectures, and edge computing paradigms.
+                    <p data-en="I believe in building robust, scalable solutions that leverage the power of cloud computing to solve real-world problems. My goal is to become a cloud architect who can design and implement enterprise-level infrastructure." data-es="Creo en construir soluciones robustas y escalables que aprovechen el poder de la computación en la nube para resolver problemas del mundo real. Mi objetivo es convertirme en un arquitecto cloud capaz de diseñar e implementar infraestructura a nivel empresarial.">
+                        Creo en construir soluciones robustas y escalables que aprovechen el poder de la computación en la nube para resolver problemas del mundo real. 
+                        Mi objetivo es convertirme en un arquitecto cloud capaz de diseñar e implementar infraestructura a nivel empresarial.
                     </p>
                 </div>
-                <div class="about-highlights">
-                    <div class="highlight-card">
-                        <div class="highlight-icon">☁️</div>
-                        <h3>Cloud Native</h3>
-                        <p>AWS, Azure, GCP<br>Kubernetes, Docker</p>
+
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">☁️</div>
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label" data-en="Years Learning Cloud" data-es="Años Aprendiendo Cloud">Años Aprendiendo Cloud</div>
                     </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">⚙️</div>
-                        <h3>Systems Design</h3>
-                        <p>Distributed Systems<br>Microservices</p>
+                    <div class="stat-card">
+                        <div class="stat-icon">🚀</div>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label" data-en="Projects Completed" data-es="Proyectos Completados">Proyectos Completados</div>
                     </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🤖</div>
-                        <h3>AI/ML</h3>
-                        <p>MLOps, TensorFlow<br>PyTorch, LangChain</p>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-number">AWS</div>
+                        <div class="stat-label" data-en="Certified Focus" data-es="Enfoque Certificado">Enfoque Certificado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-en="What I know" data-es="Lo que sé">Lo que sé</span>
+                <h2 class="section-title" data-en="Technical Expertise" data-es="Experiencia Técnica">Experiencia Técnica</h2>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Cloud Computing -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title" data-en="Cloud Computing" data-es="Computación en la Nube">Computación en la Nube</h3>
+                    <p class="skill-description" data-en="Hands-on experience with AWS (EC2, S3, Lambda, RDS). Currently learning Azure fundamentals and multi-cloud architectures." data-es="Experiencia práctica con AWS (EC2, S3, Lambda, RDS). Actualmente aprendiendo fundamentos de Azure y arquitecturas multi-cloud.">
+                        Experiencia práctica con AWS (EC2, S3, Lambda, RDS). Actualmente aprendiendo fundamentos de Azure y arquitecturas multi-cloud.
+                    </p>
+                    <div class="skill-tags">
+                        <span>AWS</span>
+                        <span>Azure</span>
+                        <span>EC2</span>
+                        <span>S3</span>
+                        <span>Lambda</span>
+                    </div>
+                </div>
+
+                <!-- Infrastructure -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title" data-en="Infrastructure & DevOps" data-es="Infraestructura & DevOps">Infraestructura & DevOps</h3>
+                    <p class="skill-description" data-en="Infrastructure as Code with Terraform and CloudFormation. Container orchestration with Docker and basic Kubernetes knowledge." data-es="Infraestructura como Código con Terraform y CloudFormation. Orquestación de contenedores con Docker y conocimientos básicos de Kubernetes.">
+                        Infraestructura como Código con Terraform y CloudFormation. Orquestación de contenedores con Docker y conocimientos básicos de Kubernetes.
+                    </p>
+                    <div class="skill-tags">
+                        <span>Terraform</span>
+                        <span>Docker</span>
+                        <span>CI/CD</span>
+                        <span>Git</span>
+                    </div>
+                </div>
+
+                <!-- Networking -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title" data-en="Networking Fundamentals" data-es="Fundamentos de Redes">Fundamentos de Redes</h3>
+                    <p class="skill-description" data-en="Understanding of VPC design, subnets, security groups, load balancers, and network architecture in cloud environments." data-es="Comprensión de diseño VPC, subredes, grupos de seguridad, balanceadores de carga y arquitectura de red en entornos cloud.">
+                        Comprensión de diseño VPC, subredes, grupos de seguridad, balanceadores de carga y arquitectura de red en entornos cloud.
+                    </p>
+                    <div class="skill-tags">
+                        <span>VPC</span>
+                        <span>Subnets</span>
+                        <span>Load Balancers</span>
+                        <span>Security Groups</span>
+                    </div>
+                </div>
+
+                <!-- AI & ML -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.4 4.4l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.4-4.4l4.2-4.2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title" data-en="AI/ML Fundamentals" data-es="Fundamentos de IA/ML">Fundamentos de IA/ML</h3>
+                    <p class="skill-description" data-en="Exploring machine learning concepts, neural networks, and deploying AI models on cloud infrastructure using AWS SageMaker." data-es="Explorando conceptos de machine learning, redes neuronales y despliegue de modelos IA en infraestructura cloud usando AWS SageMaker.">
+                        Explorando conceptos de machine learning, redes neuronales y despliegue de modelos IA en infraestructura cloud usando AWS SageMaker.
+                    </p>
+                    <div class="skill-tags">
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>SageMaker</span>
+                        <span>ML Ops</span>
+                    </div>
+                </div>
+
+                <!-- IoT -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title" data-en="IoT Systems" data-es="Sistemas IoT">Sistemas IoT</h3>
+                    <p class="skill-description" data-en="Building IoT solutions with cloud integration, sensor data processing, and real-time monitoring systems." data-es="Construcción de soluciones IoT con integración cloud, procesamiento de datos de sensores y sistemas de monitoreo en tiempo real.">
+                        Construcción de soluciones IoT con integración cloud, procesamiento de datos de sensores y sistemas de monitoreo en tiempo real.
+                    </p>
+                    <div class="skill-tags">
+                        <span>IoT Core</span>
+                        <span>MQTT</span>
+                        <span>Sensors</span>
+                        <span>Edge Computing</span>
+                    </div>
+                </div>
+
+                <!-- Programming -->
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="skill-title" data-en="Programming & Development" data-es="Programación & Desarrollo">Programación & Desarrollo</h3>
+                    <p class="skill-description" data-en="Proficient in Python for automation and scripting. Experience with Node.js for serverless functions and backend APIs." data-es="Competente en Python para automatización y scripting. Experiencia con Node.js para funciones serverless y APIs backend.">
+                        Competente en Python para automatización y scripting. Experiencia con Node.js para funciones serverless y APIs backend.
+                    </p>
+                    <div class="skill-tags">
+                        <span>Python</span>
+                        <span>JavaScript</span>
+                        <span>Node.js</span>
+                        <span>Bash</span>
                     </div>
                 </div>
             </div>
@@ -132,220 +330,215 @@
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">$ ls -la ~/projects</span>
-                <h2 class="section-title">Featured Projects</h2>
+                <span class="section-label" data-en="My work" data-es="Mi trabajo">Mi trabajo</span>
+                <h2 class="section-title" data-en="Featured Projects" data-es="Proyectos Destacados">Proyectos Destacados</h2>
             </div>
+
             <div class="projects-grid">
-                <!-- Project 1 -->
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-number">01</div>
-                        <a href="https://github.com/andresrodas/project1" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                        </a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/img/asterisk.png" alt="Asterisk VoIP Project">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" target="_blank" aria-label="View project">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="project-title">Cloud Infrastructure Automation</h3>
-                    <p class="project-description">
-                        Automated multi-cloud deployment pipeline using Terraform and GitLab CI/CD. 
-                        Orchestrates infrastructure provisioning across AWS and Azure with zero-downtime deployments.
-                    </p>
-                    <div class="project-problem">
-                        <strong>Challenge:</strong> Manual infrastructure deployment causing inconsistencies and extended downtime during updates.
+                    <div class="project-content">
+                        <h3 class="project-title">Asterisk VoIP System</h3>
+                        <p class="project-description" data-en="Cloud-based VoIP communication system using Asterisk PBX deployed on AWS EC2 with auto-scaling capabilities." data-es="Sistema de comunicación VoIP basado en la nube usando Asterisk PBX desplegado en AWS EC2 con capacidades de auto-escalado.">
+                            Sistema de comunicación VoIP basado en la nube usando Asterisk PBX desplegado en AWS EC2 con capacidades de auto-escalado.
+                        </p>
+                        <div class="project-tags">
+                            <span>AWS EC2</span>
+                            <span>Asterisk</span>
+                            <span>VoIP</span>
+                            <span>Linux</span>
+                        </div>
                     </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">Azure</span>
-                        <span class="tech-tag">GitLab CI/CD</span>
-                        <span class="tech-tag">Docker</span>
-                    </div>
-                </article>
+                </div>
 
-                <!-- Project 2 -->
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-number">02</div>
-                        <a href="https://github.com/andresrodas/project2" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                        </a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/img/fresa.png" alt="Agricultural IoT Project">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" target="_blank" aria-label="View project">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="project-title">Distributed ML Training Platform</h3>
-                    <p class="project-description">
-                        Kubernetes-based platform for distributed machine learning training jobs. 
-                        Supports GPU scheduling, model versioning, and experiment tracking at scale.
-                    </p>
-                    <div class="project-problem">
-                        <strong>Challenge:</strong> Inefficient resource utilization and lack of reproducibility in ML training workflows.
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Agriculture IoT</h3>
+                        <p class="project-description" data-en="IoT solution for precision agriculture with sensor monitoring, data analytics, and automated irrigation control via AWS IoT Core." data-es="Solución IoT para agricultura de precisión con monitoreo de sensores, análisis de datos y control de riego automatizado vía AWS IoT Core.">
+                            Solución IoT para agricultura de precisión con monitoreo de sensores, análisis de datos y control de riego automatizado vía AWS IoT Core.
+                        </p>
+                        <div class="project-tags">
+                            <span>AWS IoT</span>
+                            <span>Sensors</span>
+                            <span>Python</span>
+                            <span>MQTT</span>
+                        </div>
                     </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Kubernetes</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">MLflow</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                </article>
+                </div>
 
-                <!-- Project 3 -->
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-number">03</div>
-                        <a href="https://github.com/andresrodas/project3" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                        </a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/img/robot.png" alt="AI Chatbot Project">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" target="_blank" aria-label="View project">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="project-title">Real-time Event Processing System</h3>
-                    <p class="project-description">
-                        High-throughput event streaming platform built with Apache Kafka and Go microservices. 
-                        Processes 50K+ events/second with sub-100ms latency and guaranteed delivery.
-                    </p>
-                    <div class="project-problem">
-                        <strong>Challenge:</strong> Legacy monolithic system unable to handle traffic spikes and real-time analytics requirements.
+                    <div class="project-content">
+                        <h3 class="project-title">AI Customer Support Bot</h3>
+                        <p class="project-description" data-en="Serverless chatbot using AWS Lambda, Amazon Lex, and natural language processing for automated customer support." data-es="Chatbot serverless usando AWS Lambda, Amazon Lex y procesamiento de lenguaje natural para soporte al cliente automatizado.">
+                            Chatbot serverless usando AWS Lambda, Amazon Lex y procesamiento de lenguaje natural para soporte al cliente automatizado.
+                        </p>
+                        <div class="project-tags">
+                            <span>AWS Lambda</span>
+                            <span>Amazon Lex</span>
+                            <span>NLP</span>
+                            <span>DynamoDB</span>
+                        </div>
                     </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Apache Kafka</span>
-                        <span class="tech-tag">Go</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Prometheus</span>
-                        <span class="tech-tag">Grafana</span>
-                    </div>
-                </article>
+                </div>
 
-                <!-- Project 4 -->
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-number">04</div>
-                        <a href="https://github.com/andresrodas/project4" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                        </a>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/img/vault.png" alt="Secure Storage Project">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" target="_blank" aria-label="View project">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="project-title">Serverless RAG Chatbot</h3>
-                    <p class="project-description">
-                        Cost-efficient retrieval-augmented generation chatbot using AWS Lambda and vector databases. 
-                        Integrates with OpenAI API for intelligent document Q&A with semantic search.
-                    </p>
-                    <div class="project-problem">
-                        <strong>Challenge:</strong> Building an AI assistant that provides accurate, context-aware responses from large document repositories.
+                    <div class="project-content">
+                        <h3 class="project-title">Cloud Vault Storage</h3>
+                        <p class="project-description" data-en="Encrypted file storage system with S3, encryption at rest and in transit, and IAM policies for secure access control." data-es="Sistema de almacenamiento de archivos cifrado con S3, cifrado en reposo y en tránsito, y políticas IAM para control de acceso seguro.">
+                            Sistema de almacenamiento de archivos cifrado con S3, cifrado en reposo y en tránsito, y políticas IAM para control de acceso seguro.
+                        </p>
+                        <div class="project-tags">
+                            <span>AWS S3</span>
+                            <span>KMS</span>
+                            <span>IAM</span>
+                            <span>Security</span>
+                        </div>
                     </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">AWS Lambda</span>
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">Pinecone</span>
-                        <span class="tech-tag">OpenAI API</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </article>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
+    <!-- CV Section -->
+    <section class="cv-section" id="cv">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">$ cat /skills.yaml</span>
-                <h2 class="section-title">Technical Expertise</h2>
+                <span class="section-label" data-en="My resume" data-es="Mi currículum">Mi currículum</span>
+                <h2 class="section-title" data-en="Curriculum Vitae" data-es="Currículum Vitae">Currículum Vitae</h2>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+
+            <div class="cv-container">
+                <div class="cv-viewer">
+                    <iframe src="assets/cv.pdf" title="CV Andrés Rodas"></iframe>
+                </div>
+                <div class="cv-actions">
+                    <a href="assets/cv.pdf" download="Andres_Rodas_CV.pdf" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                        Cloud & Infrastructure
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">AWS (EC2, S3, Lambda, RDS, ECS)</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 85%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Azure (VMs, Functions, Blob Storage)</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 75%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Google Cloud Platform</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 70%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Terraform / CloudFormation</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 80%"></div></div>
-                        </div>
+                        <span data-en="Download PDF" data-es="Descargar PDF">Descargar PDF</span>
+                    </a>
+                    <a href="assets/cv.pdf" target="_blank" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        <span data-en="Open in new tab" data-es="Abrir en nueva pestaña">Abrir en nueva pestaña</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-en="Get in touch" data-es="Ponte en contacto">Ponte en contacto</span>
+                <h2 class="section-title" data-en="Contact Me" data-es="Contáctame">Contáctame</h2>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-text" data-en="I'm always open to discussing new projects, opportunities, or collaborations. Feel free to reach out!" data-es="Siempre estoy abierto a discutir nuevos proyectos, oportunidades o colaboraciones. ¡No dudes en contactarme!">
+                        Siempre estoy abierto a discutir nuevos proyectos, oportunidades o colaboraciones. ¡No dudes en contactarme!
+                    </p>
+                    
+                    <div class="contact-methods">
+                        <a href="mailto:andres.rodas@example.com" class="contact-method">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="method-text">
+                                <span class="method-label" data-en="Email" data-es="Correo">Correo</span>
+                                <span class="method-value">andres.rodas@example.com</span>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/andresrodas" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </div>
+                            <div class="method-text">
+                                <span class="method-label">LinkedIn</span>
+                                <span class="method-value">linkedin.com/in/andresrodas</span>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/andresrodas" target="_blank" class="contact-method">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </div>
+                            <div class="method-text">
+                                <span class="method-label">GitHub</span>
+                                <span class="method-value">github.com/andresrodas</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                <div class="contact-visual">
+                    <div class="contact-decoration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.2,73.1,42.3C64.8,55.4,53.8,67,40.6,74.8C27.4,82.6,12.1,86.6,-3.1,91.8C-18.3,97,-36.6,103.4,-50.3,96.4C-64,89.4,-73.1,69,-78.8,49.8C-84.5,30.6,-86.8,12.6,-85.3,-4.8C-83.8,-22.2,-78.5,-39,-69.8,-52.8C-61.1,-66.6,-49,-77.4,-35.2,-85C-21.4,-92.6,-10.7,-97,1.3,-99.3C13.3,-101.6,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
                         </svg>
-                        Backend & DevOps
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">Docker & Kubernetes</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 85%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Python (FastAPI, Flask)</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 90%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Go / Node.js</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 75%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">CI/CD (GitHub Actions, GitLab CI)</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 80%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 16v-4"></path>
-                            <path d="M12 8h.01"></path>
-                        </svg>
-                        AI & Machine Learning
-                    </h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">TensorFlow / PyTorch</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 80%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">LangChain / Vector DBs</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 75%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">MLOps (MLflow, Kubeflow)</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 70%"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Computer Vision / NLP</span>
-                            <div class="skill-bar"><div class="skill-level" style="--level: 75%"></div></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -356,46 +549,51 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p class="footer-text">
-                    <span class="footer-icon">▲</span> Hosted on Vercel
-                </p>
-                <p class="footer-copyright">
-                    © 2026 Andrés Rodas. Built with HTML & CSS.
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="logo-bracket">&lt;</span>
+                        <span class="logo-text">AR</span>
+                        <span class="logo-bracket">/&gt;</span>
+                    </div>
+                    <p class="footer-tagline" data-en="Building the future with cloud & AI" data-es="Construyendo el futuro con cloud & IA">
+                        Construyendo el futuro con cloud & IA
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#home" data-en="Home" data-es="Inicio">Inicio</a>
+                    <a href="#about" data-en="About" data-es="Sobre mí">Sobre mí</a>
+                    <a href="#skills" data-en="Skills" data-es="Habilidades">Habilidades</a>
+                    <a href="#projects" data-en="Projects" data-es="Proyectos">Proyectos</a>
+                    <a href="#contact" data-en="Contact" data-es="Contacto">Contacto</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/andresrodas" target="_blank" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/andresrodas" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Andrés Rodas. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">Todos los derechos reservados.</span></p>
+                <p class="footer-host">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span data-en="Hosted on Vercel" data-es="Alojado en Vercel">Alojado en Vercel</span>
                 </p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections and cards
-        document.querySelectorAll('section, .project-card, .skill-category, .highlight-card').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
