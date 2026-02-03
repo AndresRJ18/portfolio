@@ -432,38 +432,9 @@ document.addEventListener('DOMContentLoaded', () => {
             from { opacity: 1; transform: translateY(0); }
             to { opacity: 0; transform: translateY(-10px); }
         }
-        
-        .navbar.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
     `;
     document.head.appendChild(style);
 });
 
-// ============================================
-// Typing Animation for Hero (Optional)
-// ============================================
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Uncomment to enable typing animation on hero title
-// const heroName = document.querySelector('.title-name');
-// if (heroName) {
-//     const originalText = heroName.textContent;
-//     typeWriter(heroName, originalText, 80);
-// }
-
 console.log('%c🚀 Portfolio loaded successfully!', 'color: #00d4ff; font-size: 16px; font-weight: bold;');
-console.log('%c⚡ Built with passion for Cloud & AI', 'color: #b8a89a; font-size: 12px;');
+console.log('%c⚡ Built with passion for Cloud & ML', 'color: #b8a89a; font-size: 12px;');
