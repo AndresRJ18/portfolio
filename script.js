@@ -390,27 +390,17 @@ emailLinks.forEach(link => {
 });
 
 // ============================================
-// Project Card Hover Effects
+// Project Card — GIF preview loads on first hover
 // ============================================
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-    });
+document.querySelectorAll('.project-gif-overlay img[data-src]').forEach(img => {
+    const card = img.closest('.project-card');
+    let loaded = false;
+    card?.addEventListener('mouseenter', () => {
+        if (!loaded) {
+            img.src = img.dataset.src;
+            loaded = true;
+        }
+    }, { once: false });
 });
 
 // ============================================
