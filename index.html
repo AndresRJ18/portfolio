@@ -165,26 +165,41 @@
 
             <div class="about-content">
                 <div class="about-text">
-                    <p data-en="Computer Engineering student at UPCH, focused on cloud-native architectures (AWS & Azure) and AI services. I design and deploy serverless, event-driven systems with Terraform — from idea to production."
-                       data-es="Estudiante de Ingeniería Informática en la UPCH, enfocado en arquitecturas cloud-native (AWS & Azure) y servicios de IA. Diseño y despliego sistemas serverless orientados a eventos con Terraform — de la idea a producción.">
-                        Estudiante de Ingeniería Informática en la UPCH, enfocado en arquitecturas cloud-native (AWS & Azure) y servicios de IA. Diseño y despliego sistemas serverless orientados a eventos con Terraform — de la idea a producción.
+                    <p data-en="I'm an Informatics Engineering student at UPCH and I'm passionate about building solutions that live in the cloud. I enjoy transforming ideas into real systems, combining automation, AI, and cloud-native architectures on AWS and Azure."
+                       data-es="Soy estudiante de Ingeniería Informática en la UPCH y me apasiona construir soluciones que vivan en la nube. Me gusta transformar ideas en sistemas reales, combinando automatización, IA y arquitecturas cloud-native en AWS y Azure.">
+                        Soy estudiante de Ingeniería Informática en la UPCH y me apasiona construir soluciones que vivan en la nube. Me gusta transformar ideas en sistemas reales, combinando automatización, IA y arquitecturas cloud-native en AWS y Azure.
                     </p>
-                    <p data-en="I build solutions integrating AWS Rekognition, Azure Speech, and Azure OpenAI with scalable backends. Hackathon participant — built Azurely at the Azure AI Dev Days 2026."
-                       data-es="Construyo soluciones integrando AWS Rekognition, Azure Speech y Azure OpenAI con backends escalables. Participé en el Azure AI Dev Days Hackathon 2026, donde desarrollé Azurely.">
-                        Construyo soluciones integrando AWS Rekognition, Azure Speech y Azure OpenAI con backends escalables. Participé en el Azure AI Dev Days Hackathon 2026, donde desarrollé Azurely.
+                    <p data-en="I love designing and deploying serverless infrastructure with Terraform, and experimenting with services like AWS Rekognition, Azure Speech, and Azure OpenAI to create more human and intelligent experiences."
+                       data-es="Disfruto diseñar y desplegar infraestructuras serverless con Terraform, y experimentar con servicios como AWS Rekognition, Azure Speech y Azure OpenAI para crear experiencias más humanas e inteligentes.">
+                        Disfruto diseñar y desplegar infraestructuras serverless con Terraform, y experimentar con servicios como AWS Rekognition, Azure Speech y Azure OpenAI para crear experiencias más humanas e inteligentes.
+                    </p>
+                    <p data-en="I believe technology shouldn't just work — it should also inspire. Every project I build is an opportunity to learn something new and get a little closer to that goal."
+                       data-es="Creo que la tecnología no solo debe funcionar, sino también inspirar. Cada proyecto que hago es una oportunidad para aprender algo nuevo y acercarme un poco más a ese objetivo.">
+                        Creo que la tecnología no solo debe funcionar, sino también inspirar. Cada proyecto que hago es una oportunidad para aprender algo nuevo y acercarme un poco más a ese objetivo.
                     </p>
                 </div>
 
                 <div class="about-stats">
+                    <!-- Card 1: Cloud icon -->
                     <div class="stat-card">
-                        <div class="stat-icon">☁️</div>
+                        <div class="stat-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
                         <div class="stat-number">2+</div>
-                        <div class="stat-label" data-en="Years Learning Cloud" data-es="Años Aprendiendo Cloud">Años Aprendiendo Cloud</div>
+                        <div class="stat-label" data-en="Years in Cloud" data-es="Años en Cloud">Años en Cloud</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🚀</div>
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label" data-en="Projects Completed" data-es="Proyectos Completados">Proyectos Completados</div>
+                    <!-- Card 2: Project icons collage background -->
+                    <div class="stat-card stat-card--projects">
+                        <div class="stat-projects-bg" aria-hidden="true">
+                            <i class="fas fa-shirt"></i>
+                            <i class="fas fa-microphone"></i>
+                            <i class="fas fa-cloud-sun"></i>
+                            <i class="fas fa-file-alt"></i>
+                            <i class="fas fa-headphones"></i>
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="stat-number">6</div>
+                        <div class="stat-label" data-en="Projects Shipped" data-es="Proyectos Entregados">Proyectos Entregados</div>
                     </div>
                 </div>
             </div>
@@ -207,15 +222,15 @@
                     </div>
                     <h3 class="skill-title" data-en="Cloud Platforms (AWS & Azure)" data-es="Plataformas Cloud (AWS & Azure)">Plataformas Cloud (AWS & Azure)</h3>
                     <p class="skill-description"
-                       data-en="Production infrastructure on AWS and Azure — compute, storage, AI services, and CI/CD pipelines."
-                       data-es="Infraestructura en producción en AWS y Azure — cómputo, almacenamiento, servicios de IA y CI/CD.">
-                        Infraestructura en producción en AWS y Azure — cómputo, almacenamiento, servicios de IA y CI/CD.
+                       data-en="Multi-cloud deployments designed for resilience, least-privilege security, and cost-optimized architectures."
+                       data-es="Despliegues multi-cloud diseñados para resiliencia, seguridad de menor privilegio y arquitecturas optimizadas en costo.">
+                        Despliegues multi-cloud diseñados para resiliencia, seguridad de menor privilegio y arquitecturas optimizadas en costo.
                     </p>
                     <div class="skill-tags">
                         <span>AWS (EC2, S3, IAM, VPC)</span>
-                        <span>AWS Rekognition & Polly</span>
-                        <span>Azure Functions & Static Web Apps</span>
-                        <span>Azure Speech & OpenAI</span>
+                        <span>AWS Lambda & ECS Fargate</span>
+                        <span>Azure Functions</span>
+                        <span>Azure Static Web Apps</span>
                         <span>GitHub Actions CI/CD</span>
                     </div>
                 </div>
@@ -227,15 +242,16 @@
                     </div>
                     <h3 class="skill-title" data-en="Serverless & Cloud Architecture" data-es="Serverless & Arquitectura Cloud">Serverless & Arquitectura Cloud</h3>
                     <p class="skill-description"
-                       data-en="Event-driven, serverless architectures — service integration, API design, and scalable systems."
-                       data-es="Arquitecturas serverless orientadas a eventos — integración de servicios, APIs y sistemas escalables.">
-                        Arquitecturas serverless orientadas a eventos — integración de servicios, APIs y sistemas escalables.
+                       data-en="Decomposing problems into decoupled functions that react to events — no servers to manage, scales on demand."
+                       data-es="Descomponer problemas en funciones desacopladas que reaccionan a eventos — sin servidores que gestionar, escala bajo demanda.">
+                        Descomponer problemas en funciones desacopladas que reaccionan a eventos — sin servidores que gestionar, escala bajo demanda.
                     </p>
                     <div class="skill-tags">
                         <span>Lambda</span>
-                        <span>Event-Driven Design</span>
+                        <span>S3 Triggers</span>
                         <span>API Gateway</span>
-                        <span>Microservices</span>
+                        <span>ECS Fargate</span>
+                        <span>Event-Driven Design</span>
                     </div>
                 </div>
 
@@ -246,9 +262,9 @@
                     </div>
                     <h3 class="skill-title" data-en="Networking Fundamentals (DevOps-Oriented)" data-es="Fundamentos de Redes (Orientado a DevOps)">Fundamentos de Redes (Orientado a DevOps)</h3>
                     <p class="skill-description"
-                       data-en="Networking fundamentals applied to cloud: protocols, routing, security groups, and load balancing."
-                       data-es="Fundamentos de redes aplicados a la nube: protocolos, enrutamiento, security groups y balanceo de carga.">
-                        Fundamentos de redes aplicados a la nube: protocolos, enrutamiento, security groups y balanceo de carga.
+                       data-en="Understanding how traffic flows — VPC design, security boundaries, and resilient routing patterns for cloud environments."
+                       data-es="Entender cómo fluye el tráfico — diseño de VPC, límites de seguridad y patrones de enrutamiento resiliente para entornos cloud.">
+                        Entender cómo fluye el tráfico — diseño de VPC, límites de seguridad y patrones de enrutamiento resiliente para entornos cloud.
                     </p>
                     <div class="skill-tags">
                         <span>TCP/IP & DNS</span>
@@ -266,15 +282,16 @@
                     </div>
                     <h3 class="skill-title" data-en="AI & Machine Learning" data-es="IA & Machine Learning">IA & Machine Learning</h3>
                     <p class="skill-description"
-                       data-en="ML fundamentals: data processing, feature engineering, model training and evaluation."
-                       data-es="Fundamentos de ML: procesamiento de datos, feature engineering, entrenamiento y evaluación de modelos.">
-                        Fundamentos de ML: procesamiento de datos, feature engineering, entrenamiento y evaluación de modelos.
+                       data-en="Integrating managed AI services into real products, backed by solid classical ML foundations."
+                       data-es="Integrar servicios de IA administrados en productos reales, respaldado por fundamentos sólidos de ML clásico.">
+                        Integrar servicios de IA administrados en productos reales, respaldado por fundamentos sólidos de ML clásico.
                     </p>
                     <div class="skill-tags">
-                        <span>Machine Learning</span>
-                        <span>Data Processing</span>
-                        <span>Model Evaluation</span>
-                        <span>Feature Engineering</span>
+                        <span>AWS Rekognition</span>
+                        <span>Azure OpenAI (GPT-4o-mini)</span>
+                        <span>Azure Speech SDK</span>
+                        <span>Amazon Polly</span>
+                        <span>ML Fundamentals</span>
                     </div>
                 </div>
 
@@ -285,15 +302,15 @@
                     </div>
                     <h3 class="skill-title" data-en="IoT & Hardware Projects" data-es="IoT & Proyectos Hardware">IoT & Proyectos Hardware</h3>
                     <p class="skill-description"
-                       data-en="IoT solutions with sensors and microcontrollers — from environmental monitoring to chemical detection."
-                       data-es="Soluciones IoT con sensores y microcontroladores — desde monitoreo ambiental hasta detección química.">
-                        Soluciones IoT con sensores y microcontroladores — desde monitoreo ambiental hasta detección química.
+                       data-en="Bridging the physical and digital worlds — reading real-world data, processing it on-device, and acting on it."
+                       data-es="Conectar el mundo físico y el digital — leer datos del mundo real, procesarlos en el dispositivo y actuar sobre ellos.">
+                        Conectar el mundo físico y el digital — leer datos del mundo real, procesarlos en el dispositivo y actuar sobre ellos.
                     </p>
                     <div class="skill-tags">
                         <span>Arduino</span>
-                        <span>Sensors</span>
+                        <span>Optical Sensors</span>
+                        <span>Spectral Analysis</span>
                         <span>Embedded Systems</span>
-                        <span>Real-World Applications</span>
                     </div>
                 </div>
 
@@ -304,9 +321,9 @@
                     </div>
                     <h3 class="skill-title" data-en="Software Engineering & IaC" data-es="Ingeniería de Software & IaC">Ingeniería de Software & IaC</h3>
                     <p class="skill-description"
-                       data-en="Python, Terraform IaC, Docker containers, FastAPI backends, and Linux environments."
-                       data-es="Python, Terraform IaC, contenedores Docker, backends FastAPI y entornos Linux.">
-                        Python, Terraform IaC, contenedores Docker, backends FastAPI y entornos Linux.
+                       data-en="Writing clean code, provisioning infra as code, and shipping containerized services — the full delivery cycle."
+                       data-es="Escribir código limpio, aprovisionar infraestructura como código y entregar servicios containerizados — el ciclo completo de entrega.">
+                        Escribir código limpio, aprovisionar infraestructura como código y entregar servicios containerizados — el ciclo completo de entrega.
                     </p>
                     <div class="skill-tags">
                         <span>Python</span>
