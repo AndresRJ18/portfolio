@@ -61,6 +61,9 @@ function updateLanguage(lang) {
     
     // Save preference
     localStorage.setItem('language', lang);
+
+    // Notify overlay if visible
+    document.dispatchEvent(new CustomEvent('languageChanged'));
 }
 
 function updateLangToggle() {
@@ -390,18 +393,116 @@ emailLinks.forEach(link => {
 });
 
 // ============================================
-// Project Card — GIF preview loads on first hover
+// Projects — full-grid hover overlay
 // ============================================
-document.querySelectorAll('.project-gif-overlay img[data-src]').forEach(img => {
-    const card = img.closest('.project-card');
-    let loaded = false;
-    card?.addEventListener('mouseenter', () => {
-        if (!loaded) {
-            img.src = img.dataset.src;
-            loaded = true;
+(function () {
+    const overlay = document.getElementById('project-detail-overlay');
+    if (!overlay) return;
+
+    const pdoBanner  = overlay.querySelector('.pdo-banner');
+    const pdoGifWrap = overlay.querySelector('.pdo-gif-wrap');
+    const pdoGifImg  = overlay.querySelector('.pdo-gif-wrap img');
+    const pdoTitle   = overlay.querySelector('.pdo-title');
+    const pdoBadge   = overlay.querySelector('.pdo-badge');
+    const pdoActions = overlay.querySelector('.pdo-actions');
+    const pdoSub     = overlay.querySelector('.pdo-subtitle');
+    const pdoDesc    = overlay.querySelector('.pdo-desc');
+    const pdoTags    = overlay.querySelector('.pdo-tags');
+
+    let hideTimer = null;
+    const gifCache = {};
+
+    function getLang() {
+        return localStorage.getItem('language') || 'es';
+    }
+
+    function showOverlay(card) {
+        clearTimeout(hideTimer);
+        const info = card.querySelector('.card-expanded-info');
+        const media = card.querySelector('.card-expanded-media');
+        if (!info) return;
+
+        const lang = getLang();
+
+        // Banner class — copy from .card-face-accent
+        const accentEl = card.querySelector('.card-face-accent');
+        const bannerClass = [...accentEl.classList].find(c => c.startsWith('project-banner--'));
+        pdoBanner.className = `pdo-banner project-banner ${bannerClass || ''}`;
+
+        // GIF
+        const gifImg = media?.querySelector('img[data-src]');
+        if (gifImg) {
+            const src = gifImg.dataset.src;
+            pdoGifImg.alt = gifImg.alt;
+            pdoGifWrap.classList.remove('loaded');
+            if (gifCache[src]) {
+                pdoGifImg.src = src;
+                pdoGifWrap.classList.add('loaded');
+            } else {
+                pdoGifImg.src = src;
+                pdoGifImg.onload = () => {
+                    gifCache[src] = true;
+                    pdoGifWrap.classList.add('loaded');
+                };
+            }
+        } else {
+            pdoGifImg.src = '';
+            pdoGifWrap.classList.remove('loaded');
         }
-    }, { once: false });
-});
+
+        // Title
+        pdoTitle.textContent = info.querySelector('.project-title')?.textContent || '';
+
+        // Hackathon badge
+        const badge = info.querySelector('.hackathon-badge');
+        pdoBadge.innerHTML = badge ? badge.outerHTML : '';
+        pdoBadge.style.display = badge ? '' : 'none';
+
+        // Subtitle (bilingual)
+        const subEl = info.querySelector('.project-subtitle');
+        pdoSub.textContent = subEl?.dataset[lang] || subEl?.textContent || '';
+        pdoSub.dataset.es = subEl?.dataset.es || '';
+        pdoSub.dataset.en = subEl?.dataset.en || '';
+
+        // Description (bilingual)
+        const descEl = info.querySelector('.project-description');
+        pdoDesc.textContent = descEl?.dataset[lang] || descEl?.textContent || '';
+        pdoDesc.dataset.es = descEl?.dataset.es || '';
+        pdoDesc.dataset.en = descEl?.dataset.en || '';
+
+        // Tags
+        pdoTags.innerHTML = info.querySelector('.project-tags')?.innerHTML || '';
+
+        // Actions
+        pdoActions.innerHTML = info.querySelector('.project-actions')?.innerHTML || '';
+
+        overlay.classList.add('visible');
+        overlay.removeAttribute('aria-hidden');
+    }
+
+    function scheduleHide() {
+        hideTimer = setTimeout(() => {
+            overlay.classList.remove('visible');
+            overlay.setAttribute('aria-hidden', 'true');
+        }, 120);
+    }
+
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', () => showOverlay(card));
+        card.addEventListener('mouseleave', scheduleHide);
+    });
+
+    overlay.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+    overlay.addEventListener('mouseleave', scheduleHide);
+
+    // Re-apply language to overlay if language is toggled while overlay is visible
+    document.addEventListener('languageChanged', () => {
+        if (!overlay.classList.contains('visible')) return;
+        const lang = getLang();
+        if (pdoSub.dataset[lang]) pdoSub.textContent = pdoSub.dataset[lang];
+        if (pdoDesc.dataset[lang]) pdoDesc.textContent = pdoDesc.dataset[lang];
+    });
+})();
 
 // ============================================
 // Initialize Everything

@@ -874,11 +874,6 @@ section {
     background: var(--bg-secondary);
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: var(--spacing-xl);
-}
 
 .project-card {
     background: var(--bg-card);
@@ -890,8 +885,6 @@ section {
 
 .project-card:hover {
     border-color: var(--accent-primary);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.15);
 }
 
 .project-image {
@@ -996,6 +989,248 @@ section {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
     background: rgba(0, 212, 255, 0.1);
+}
+
+/* ---- PROJECTS GRID + HOVER EXPAND ---- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    position: relative;
+}
+
+.card-face {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 190px;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.card-face-accent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: #fff;
+    opacity: 0.9;
+    flex-shrink: 0;
+    height: 100%;
+    min-height: unset;
+    transition: filter var(--transition-fast);
+    overflow: hidden;
+}
+
+.card-face-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform var(--transition-base);
+}
+
+.project-card:hover .card-face-img {
+    transform: scale(1.04);
+}
+
+.project-card:hover .card-face-accent {
+    filter: brightness(1.15);
+}
+
+.card-face-text {
+    padding: 1.25rem 1.25rem 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.card-face-text .project-title {
+    font-size: 1.25rem;
+}
+
+.card-face-text .project-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* .card-expanded stays in DOM as data source but is invisible */
+.card-expanded { display: none !important; }
+
+/* ---- Full-grid hover overlay ---- */
+#project-detail-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 55% 45%;
+    background: var(--bg-card);
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0,212,255,0.2);
+
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.97);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+#project-detail-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+/* Media panel (left 55%) */
+.pdo-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.pdo-banner {
+    position: absolute;
+    inset: 0;
+}
+
+.pdo-gif-wrap {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.pdo-gif-wrap.loaded { opacity: 1; }
+.pdo-gif-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Info panel (right 45%) */
+.pdo-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    overflow-y: auto;
+}
+
+.pdo-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.pdo-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.pdo-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.pdo-subtitle {
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    margin: 0;
+    font-weight: 600;
+}
+
+.pdo-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.pdo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+}
+
+.pdo-tags span {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.875rem;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid var(--accent-primary);
+    border-radius: 9999px;
+    color: var(--accent-primary);
+}
+
+.pdo-actions {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+/* Mobile: stack cards, no overlay — show expanded info inline */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #project-detail-overlay {
+        display: none !important;
+    }
+
+    .card-face {
+        height: 140px;
+    }
+
+    /* Reveal expanded info below the compact face */
+    .card-expanded {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .card-expanded-media {
+        display: none;
+    }
+
+    .card-expanded-info {
+        padding: 1.25rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .card-expanded-info .project-title {
+        font-size: 1.1rem;
+    }
+
+    .card-expanded-info .project-subtitle {
+        font-size: 0.875rem;
+    }
+
+    .card-expanded-info .project-description {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .card-expanded-info .project-tags {
+        margin: 0;
+    }
+
+    .card-expanded-info .project-header {
+        margin-bottom: 0;
+    }
 }
 
 /* ============================================
@@ -1276,7 +1511,7 @@ section {
     .mobile-toggle {
         display: flex;
     }
-    
+
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -1289,35 +1524,45 @@ section {
         transform: translateX(-100%);
         transition: transform var(--transition-base);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        z-index: 999;
     }
-    
+
     .nav-menu.active {
         transform: translateX(0);
     }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
+
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
+
+    .skills-grid .skill-card {
+        min-width: 0;
+    }
+
     .profile-container {
-        width: 300px;
-        height: 300px;
+        width: 260px;
+        height: 260px;
     }
-    
+
     .profile-image {
-        width: 240px;
-        height: 240px;
+        width: 210px;
+        height: 210px;
     }
-    
+
     .profile-ring {
-        width: 280px;
-        height: 280px;
+        width: 245px;
+        height: 245px;
     }
-    
+
+    /* About stats side by side on tablet/large phone */
+    .about-stats {
+        flex-direction: row;
+    }
+
+    .about-stats .stat-card {
+        flex: 1;
+    }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
@@ -1328,38 +1573,146 @@ section {
     section {
         padding: var(--spacing-2xl) 0;
     }
-    
+
     .hero {
         min-height: auto;
+        padding-top: 70px;
     }
-    
+
+    .hero-container {
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .hero-badge {
+        font-size: 0.78rem;
+        padding: 0.35rem 0.75rem;
+        text-align: center;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
     .hero-cta {
         flex-direction: column;
         width: 100%;
     }
-    
+
     .btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     .profile-container {
-        width: 250px;
-        height: 250px;
+        width: 210px;
+        height: 210px;
     }
-    
+
     .profile-image {
+        width: 170px;
+        height: 170px;
+    }
+
+    .profile-ring {
         width: 200px;
         height: 200px;
     }
-    
-    .tech-icon {
-        width: 50px;
-        height: 50px;
+
+    /* Hide floating tech icons on phones to avoid overlap */
+    .floating-tech {
+        display: none;
     }
-    
-    .tech-icon i {
-        font-size: 24px;
+
+    /* Nav controls tighter on small phones */
+    .nav-container {
+        padding: 0.75rem 1rem;
+    }
+
+    .nav-logo {
+        font-size: 1.25rem;
+    }
+
+    .lang-toggle {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* About stats stack vertically on small phones */
+    .about-stats {
+        flex-direction: column;
+    }
+
+    /* Skills tags smaller on phones */
+    .skill-tags span {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.65rem;
+    }
+
+    /* Contact method value truncate */
+    .method-value {
+        font-size: 0.875rem;
+        word-break: break-all;
+    }
+
+    /* Card face adjustments for phones */
+    .card-face {
+        height: 120px;
+    }
+
+    .card-face-text {
+        padding: 1rem;
+    }
+
+    .card-face-text .project-title {
+        font-size: 1.1rem;
+    }
+
+    .card-face-text .project-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .hackathon-badge {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+
+    .hero-container {
+        padding: 1rem 0.875rem;
+    }
+
+    .profile-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile-image {
+        width: 145px;
+        height: 145px;
+    }
+
+    .profile-ring {
+        width: 170px;
+        height: 170px;
+    }
+
+    .nav-logo {
+        font-size: 1.1rem;
+    }
+
+    .lang-toggle {
+        padding: 0.3rem 0.4rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -1424,13 +1777,17 @@ section {
 }
 
 /* Per-project gradient themes */
-.project-banner--stylematch {
-    background: linear-gradient(135deg, #1a0a00 0%, #2d1500 50%, #1a0a00 100%);
+.project-banner--acs {
+    background:
+        linear-gradient(135deg, rgba(26,10,0,0.72) 0%, rgba(45,21,0,0.6) 50%, rgba(26,10,0,0.72) 100%),
+        url('assets/img/style.png') center / cover no-repeat;
     color: #d4a84b;
 }
 
 .project-banner--azurely {
-    background: linear-gradient(135deg, #001428 0%, #002952 50%, #003f7a 100%);
+    background:
+        linear-gradient(135deg, rgba(0,20,40,0.72) 0%, rgba(0,41,82,0.6) 50%, rgba(0,63,122,0.72) 100%),
+        url('assets/img/azurely.png') center / cover no-repeat;
     color: #5ba8ff;
 }
 
@@ -1525,6 +1882,66 @@ section {
 .project-banner--shortener {
     background: linear-gradient(135deg, #1a1200 0%, #2d2000 50%, #402d00 100%);
     color: #ffc947;
+}
+
+/* NovA AI banner — dark space + AWS orange */
+.project-banner--nova {
+    background:
+        linear-gradient(135deg, rgba(5,2,9,0.72) 0%, rgba(13,5,32,0.6) 50%, rgba(26,8,64,0.72) 100%),
+        url('assets/img/nova.png') center / cover no-repeat;
+    color: #FF9900;
+}
+
+/* Issue2Secure banner — dark + GitLab orange */
+.project-banner--issue2secure {
+    background:
+        linear-gradient(135deg, rgba(18,6,0,0.72) 0%, rgba(31,10,0,0.6) 50%, rgba(45,18,0,0.72) 100%),
+        url('assets/img/gitlab.png') center / cover no-repeat;
+    color: #FC6D26;
+}
+
+/* AWS Builder badge */
+.aws-builder-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    background: linear-gradient(135deg, rgba(255,153,0,0.1), rgba(255,100,0,0.1));
+    border: 1px solid rgba(255,153,0,0.35);
+    border-radius: 20px;
+    color: #FF9900;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* GIF skeleton shimmer */
+.project-gif-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        var(--bg-tertiary) 25%,
+        rgba(255,255,255,0.04) 50%,
+        var(--bg-tertiary) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.project-gif-overlay.loading::before { opacity: 1; }
+.project-gif-overlay.loading img { opacity: 0; }
+.project-gif-overlay img { transition: opacity 0.5s ease; }
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 /* Project header with hackathon badge */
