@@ -19,7 +19,7 @@ export function AnnexesSection() {
                 <SectionHeader index="05" id={`${meta.id}-title`} kicker={t(meta.kicker.es, meta.kicker.en)} title={t(meta.title.es, meta.title.en)} />
 
                 {/* Recognitions — the three with photos as large cards, the rest as a compact list. */}
-                <h3 className="font-display text-[clamp(1.6rem,3.5vw,2.6rem)] font-extrabold leading-tight">Reconocimientos</h3>
+                <h3 className="font-display break-words text-[clamp(1.35rem,5.5vw,2.6rem)] font-extrabold leading-tight">Reconocimientos</h3>
                 <ul className="mt-10 grid gap-5 md:grid-cols-3">
                     {withPhoto.map((r, i) => (
                         <Reveal as="li" key={r.title.es} delay={i * 0.08} className="group overflow-hidden rounded-3xl border border-white/10 bg-panel">
@@ -67,7 +67,7 @@ export function AnnexesSection() {
             {/* Testimonials on the same grain band as "Habilidades técnicas". */}
             <div className="bg-grain-field mt-24 py-24 lg:mt-32">
                 <div className="mx-auto max-w-7xl px-5 lg:px-8">
-                    <h3 className="font-display text-[clamp(1.6rem,3.5vw,2.6rem)] font-extrabold leading-tight text-white">Testimonios</h3>
+                    <h3 className="font-display break-words text-[clamp(1.35rem,5.5vw,2.6rem)] font-extrabold leading-tight text-white">Testimonios</h3>
                     <p className="mt-3 max-w-xl text-white/80">Lo que dicen quienes han trabajado y compartido conmigo.</p>
                     <div className="mt-12">
                         <TestimonialCards />
