@@ -9,9 +9,14 @@
     --color-neon-cyan: #4deeea;
     --color-neon-magenta: #ff2bd6;
 
+    /* Deep tones for hard offset shadows (neo-brutalist depth instead of glow). */
+    --color-shadow-green: #1b6b45;
+    --color-shadow-cyan: #1b6866;
+
+    /* Contrast vs void / panel / panel-alt — primary 17.9/16.8/15.6, secondary 8.9/8.4/7.8, muted 6.7/6.3/5.8 (all ≥ AA). */
     --color-text-primary: #eaf7ec;
     --color-text-secondary: #9fb3a8;
-    --color-text-muted: #6b7a72;
+    --color-text-muted: #8a9a91;
 
     --font-pixel: 'Press Start 2P', monospace;
     --font-terminal: 'VT323', monospace;
@@ -20,10 +25,7 @@
 
     --shadow-glow-green: 0 0 2px #39ff88, 0 0 10px rgba(57, 255, 136, 0.5), 0 0 24px rgba(57, 255, 136, 0.25);
     --shadow-glow-cyan: 0 0 2px #4deeea, 0 0 10px rgba(77, 238, 234, 0.5), 0 0 24px rgba(77, 238, 234, 0.25);
-    --shadow-glow-magenta: 0 0 2px #ff2bd6, 0 0 10px rgba(255, 43, 214, 0.5), 0 0 24px rgba(255, 43, 214, 0.25);
 
-    --animate-crt-flicker: crt-flicker 6s infinite;
-    --animate-scan-move: scan-move 9s linear infinite;
     --animate-glitch-1: glitch-1 2.4s infinite steps(1, end);
     --animate-glitch-2: glitch-2 2.4s infinite steps(1, end);
     --animate-blink: blink 1.1s steps(1, end) infinite;
@@ -42,16 +44,36 @@
         background-color: var(--color-void);
         color: var(--color-text-primary);
         font-family: var(--font-body);
+        line-height: 1.65;
         overflow-x: hidden;
+    }
+
+    /* Native #anchor jumps land below the fixed navbar. */
+    section[id] {
+        scroll-margin-top: 5rem;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-neon-cyan);
+        outline-offset: 3px;
     }
 }
 
 @layer utilities {
+    /* Pixel-cut corners. `-inner` variants are 1px smaller so a 2px frame keeps an even border on the diagonals. */
     .clip-retro {
         clip-path: polygon(
             14px 0, calc(100% - 14px) 0, 100% 14px,
             100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%,
             0 calc(100% - 14px), 0 14px
+        );
+    }
+
+    .clip-retro-inner {
+        clip-path: polygon(
+            13px 0, calc(100% - 13px) 0, 100% 13px,
+            100% calc(100% - 13px), calc(100% - 13px) 100%, 13px 100%,
+            0 calc(100% - 13px), 0 13px
         );
     }
 
@@ -63,6 +85,32 @@
         );
     }
 
+    .clip-retro-sm-inner {
+        clip-path: polygon(
+            7px 0, calc(100% - 7px) 0, 100% 7px,
+            100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%,
+            0 calc(100% - 7px), 0 7px
+        );
+    }
+
+    /* Hard offset shadow applied to the wrapper (filter runs after the child's clip-path, so it follows the pixel corners). */
+    .hard-shadow-green {
+        filter: drop-shadow(5px 5px 0 var(--color-shadow-green));
+    }
+
+    .hard-shadow-cyan {
+        filter: drop-shadow(5px 5px 0 var(--color-shadow-cyan));
+    }
+
+    .hard-shadow-sm-green {
+        filter: drop-shadow(3px 3px 0 var(--color-shadow-green));
+    }
+
+    .hard-shadow-sm-cyan {
+        filter: drop-shadow(3px 3px 0 var(--color-shadow-cyan));
+    }
+
+    /* Glow is reserved for large display type (logo, hero name, section titles) — never body copy. */
     .text-glow-green {
         text-shadow: 0 0 6px rgba(57, 255, 136, 0.8), 0 0 18px rgba(57, 255, 136, 0.4);
     }
@@ -70,18 +118,6 @@
     .text-glow-cyan {
         text-shadow: 0 0 6px rgba(77, 238, 234, 0.8), 0 0 18px rgba(77, 238, 234, 0.4);
     }
-}
-
-@keyframes crt-flicker {
-    0%, 96%, 100% { opacity: 1; }
-    97% { opacity: 0.94; }
-    98% { opacity: 1; }
-    99% { opacity: 0.88; }
-}
-
-@keyframes scan-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 240px; }
 }
 
 @keyframes glitch-1 {
@@ -103,6 +139,7 @@
     50%, 100% { opacity: 0; }
 }
 
+/* CSS animations only — Framer Motion is covered by <MotionConfig reducedMotion="user"> in App. */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;

@@ -1,56 +1,79 @@
-import { footer, nav, socials } from '../data/content';
+import { useState, type MouseEvent } from 'react';
+import confetti from 'canvas-confetti';
+import { contact, footer, sections } from '../data/site';
 import { useLanguage } from '../context/LanguageContext';
 
 export function Footer() {
     const { t } = useLanguage();
+    const [copied, setCopied] = useState(false);
+
+    function handleCopy(e: MouseEvent, value: string) {
+        if (!navigator.clipboard) return; // fall through to mailto:
+        e.preventDefault();
+        navigator.clipboard.writeText(value).then(() => {
+            setCopied(true);
+            confetti({ particleCount: 80, spread: 70, origin: { y: 0.85 }, colors: ['#39ff88', '#4deeea'], disableForReducedMotion: true });
+            setTimeout(() => setCopied(false), 2000);
+        });
+    }
 
     return (
-        <footer className="border-t-2 border-neon-green/30 bg-panel px-6 py-12 font-mono text-sm">
+        <footer id="contacto" className="border-t-2 border-neon-green/30 bg-panel px-5 pb-10 pt-16">
             <div className="mx-auto max-w-6xl">
-                <div className="grid items-start gap-8 text-center md:grid-cols-3 md:text-left">
+                <div className="grid gap-10 md:grid-cols-[1.2fr_1fr]">
                     <div>
-                        <div className="mb-2 font-pixel text-xs text-neon-green">&lt;AR/&gt;</div>
-                        <p className="text-text-muted">{t(footer.tagline.es, footer.tagline.en)}</p>
+                        <h2 className="font-terminal text-4xl text-neon-green">{t(contact.title.es, contact.title.en)}</h2>
+                        <p className="mt-3 max-w-md text-text-secondary">{t(contact.text.es, contact.text.en)}</p>
+                        <ul className="mt-6 space-y-3">
+                            {contact.methods.map((m) => {
+                                const Icon = m.icon;
+                                return (
+                                    <li key={m.value}>
+                                        <a
+                                            href={m.href}
+                                            target={m.copy ? undefined : '_blank'}
+                                            rel={m.copy ? undefined : 'noopener noreferrer'}
+                                            onClick={m.copy ? (e) => handleCopy(e, m.value) : undefined}
+                                            className="group inline-flex min-h-11 items-center gap-3 text-text-primary"
+                                        >
+                                            <span className="flex h-10 w-10 items-center justify-center border-2 border-neon-cyan/70 bg-void text-neon-cyan group-hover:border-neon-cyan">
+                                                <Icon size={18} aria-hidden="true" />
+                                            </span>
+                                            <span>
+                                                <span className="block font-mono text-xs uppercase tracking-wider text-text-muted">
+                                                    {t(m.label.es, m.label.en)}
+                                                    {m.copy && ' · clic para copiar'}
+                                                </span>
+                                                <span className="break-all group-hover:text-neon-cyan">{m.value}</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                        <p role="status" className="mt-3 h-6 font-mono text-sm text-neon-green">
+                            {copied ? t(contact.copied.es, contact.copied.en) : ''}
+                        </p>
                     </div>
 
-                    <ul className="flex flex-wrap justify-center gap-6">
-                        {nav.map((item) => (
-                            <li key={item.id}>
-                                <a href={`#${item.id}`} className="text-text-secondary transition-colors hover:text-neon-green">
-                                    {t(item.label.es, item.label.en)}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <div className="flex justify-center gap-3 md:justify-end">
-                        <a
-                            href={socials.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="GitHub"
-                            className="clip-retro-sm flex h-10 w-10 items-center justify-center border-2 border-neon-green/60 bg-void transition-shadow hover:shadow-[var(--shadow-glow-green)]"
-                        >
-                            <i className="fab fa-github" />
-                        </a>
-                        <a
-                            href={socials.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="LinkedIn"
-                            className="clip-retro-sm flex h-10 w-10 items-center justify-center border-2 border-neon-green/60 bg-void transition-shadow hover:shadow-[var(--shadow-glow-green)]"
-                        >
-                            <i className="fab fa-linkedin" />
-                        </a>
-                    </div>
+                    <nav aria-label="Secciones">
+                        <p className="font-pixel text-xs text-neon-green">&lt;AR/&gt;</p>
+                        <p className="mt-2 text-text-muted">{t(footer.tagline.es, footer.tagline.en)}</p>
+                        <ul className="mt-6 grid gap-2 font-mono text-sm">
+                            {sections.map((s) => (
+                                <li key={s.id}>
+                                    <a href={`#${s.id}`} className="inline-block py-1 text-text-secondary transition-colors hover:text-neon-green">
+                                        {t(s.title.es, s.title.en)}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
                 </div>
 
-                <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-neon-green/10 pt-6 text-xs text-text-muted md:flex-row">
-                    <p>&copy; 2026 Andrés Rodas. {t(footer.rights.es, footer.rights.en)}</p>
-                    <p className="flex items-center gap-1">
-                        <i className="fas fa-server text-neon-green" /> {t(footer.hostedOn.es, footer.hostedOn.en)}
-                    </p>
-                </div>
+                <p className="mt-12 border-t border-neon-green/15 pt-6 text-center font-mono text-xs text-text-muted">
+                    &copy; {new Date().getFullYear()} Andrés Rodas. {t(footer.rights.es, footer.rights.en)}
+                </p>
             </div>
         </footer>
     );

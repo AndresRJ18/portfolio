@@ -1,54 +1,37 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { MotionConfig } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
-import { ScanlineOverlay } from './components/ScanlineOverlay';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './sections/Hero';
-import { About } from './sections/About';
-import { Skills } from './sections/Skills';
-import { Projects } from './sections/Projects';
-import { Contact } from './sections/Contact';
-
-function BootFlicker() {
-    const [show, setShow] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setShow(false), 450);
-        return () => clearTimeout(timer);
-    }, []);
-
-    return (
-        <AnimatePresence>
-            {show && (
-                <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.45 }}
-                    className="pointer-events-none fixed inset-0 z-[20000] bg-void"
-                />
-            )}
-        </AnimatePresence>
-    );
-}
+import { AboutSection } from './sections/AboutSection';
+import { ProfessionalSection } from './sections/ProfessionalSection';
+import { ProjectsSection } from './sections/ProjectsSection';
+import { SoftSkillsSection } from './sections/SoftSkillsSection';
+import { AnnexesSection } from './sections/AnnexesSection';
 
 export default function App() {
     return (
         <LanguageProvider>
-            <BootFlicker />
-            <ScrollProgressBar />
-            <ScanlineOverlay />
-            <Navbar />
-            <main>
-                <Hero />
-                <About />
-                <Skills />
-                <Projects />
-                <Contact />
-            </main>
-            <Footer />
+            <MotionConfig reducedMotion="user">
+                <a
+                    href="#contenido"
+                    className="sr-only z-[2000] bg-neon-green px-4 py-2 font-mono text-void focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+                >
+                    Saltar al contenido
+                </a>
+                <ScrollProgressBar />
+                <Navbar />
+                <main id="contenido">
+                    <Hero />
+                    <AboutSection />
+                    <ProfessionalSection />
+                    <ProjectsSection />
+                    <SoftSkillsSection />
+                    <AnnexesSection />
+                </main>
+                <Footer />
+            </MotionConfig>
         </LanguageProvider>
     );
 }

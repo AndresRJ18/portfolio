@@ -1,30 +1,31 @@
 import { useEffect, useState } from 'react';
 
-export function useScrollSpy(sectionIds: string[], offset = 200): string {
-    const [activeId, setActiveId] = useState(sectionIds[0] ?? '');
+/**
+ * Returns the id of the section crossing a horizontal band near the top of the viewport
+ * (between 35% and 45% of its height), or '' when none does (e.g. while on the hero).
+ */
+export function useScrollSpy(sectionIds: readonly string[]): string {
+    const [activeId, setActiveId] = useState('');
 
     useEffect(() => {
-        function handleScroll() {
-            const scrollPos = window.pageYOffset + offset;
-
-            for (const id of sectionIds) {
-                const el = document.getElementById(id);
-                if (!el) continue;
-
-                const top = el.offsetTop;
-                const height = el.offsetHeight;
-
-                if (scrollPos >= top && scrollPos < top + height) {
-                    setActiveId(id);
-                    break;
+        const visible = new Set<string>();
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) visible.add(entry.target.id);
+                    else visible.delete(entry.target.id);
                 }
-            }
-        }
+                setActiveId(sectionIds.find((id) => visible.has(id)) ?? '');
+            },
+            { rootMargin: '-35% 0px -55% 0px' },
+        );
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [sectionIds, offset]);
+        for (const id of sectionIds) {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        }
+        return () => observer.disconnect();
+    }, [sectionIds]);
 
     return activeId;
 }

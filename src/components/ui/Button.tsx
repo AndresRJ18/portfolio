@@ -9,34 +9,46 @@ interface ButtonProps {
     icon?: ReactNode;
     target?: string;
     rel?: string;
+    download?: boolean | string;
     className?: string;
 }
 
-export function Button({ children, href, onClick, variant = 'primary', icon, target, rel, className = '' }: ButtonProps) {
-    const base = 'clip-retro-sm inline-flex items-center gap-2 px-6 py-3 font-mono text-sm font-semibold border-2 transition-colors duration-200';
-    const styles =
+export function Button({ children, href, onClick, variant = 'primary', icon, target, rel, download, className = '' }: ButtonProps) {
+    const shadow = variant === 'primary' ? 'hard-shadow-sm-green' : 'hard-shadow-sm-cyan';
+    const frame = variant === 'primary' ? 'bg-neon-green' : 'bg-neon-cyan';
+    const fill =
         variant === 'primary'
-            ? 'bg-neon-green text-void border-neon-green shadow-[var(--shadow-glow-green)]'
-            : 'bg-panel text-text-primary border-neon-cyan shadow-[var(--shadow-glow-cyan)] hover:bg-panel-alt';
+            ? 'bg-neon-green text-void'
+            : 'bg-panel text-text-primary group-hover:bg-panel-alt';
 
-    const motionProps = {
-        whileHover: { scale: 1.05 },
-        whileTap: { scale: 0.95 },
+    const inner = (
+        <span className={`clip-retro-sm block p-[2px] ${frame}`}>
+            <span
+                className={`clip-retro-sm-inner flex min-h-11 items-center gap-2 px-5 py-2.5 font-mono text-sm font-semibold transition-colors duration-200 ${fill}`}
+            >
+                {icon}
+                <span>{children}</span>
+            </span>
+        </span>
+    );
+
+    const common = {
+        className: `group inline-block ${shadow} ${className}`,
+        whileHover: { x: -1, y: -1 },
+        whileTap: { x: 2, y: 2 },
     };
 
     if (href) {
         return (
-            <motion.a href={href} target={target} rel={rel} className={`${base} ${styles} ${className}`} {...motionProps}>
-                {icon}
-                <span>{children}</span>
+            <motion.a href={href} target={target} rel={rel} download={download} {...common}>
+                {inner}
             </motion.a>
         );
     }
 
     return (
-        <motion.button onClick={onClick} className={`${base} ${styles} ${className}`} {...motionProps}>
-            {icon}
-            <span>{children}</span>
+        <motion.button type="button" onClick={onClick} {...common}>
+            {inner}
         </motion.button>
     );
 }

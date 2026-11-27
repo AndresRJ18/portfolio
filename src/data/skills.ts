@@ -1,7 +1,8 @@
-import type { Bi } from './content';
+import { Brain, Cloud, Code, Cpu, Network, Workflow } from 'lucide-react';
+import type { Bi, Icon } from './types';
 
 export interface Skill {
-    icon: string;
+    icon: Icon;
     title: Bi;
     description: Bi;
     tags: string[];
@@ -9,7 +10,7 @@ export interface Skill {
 
 export const skills: Skill[] = [
     {
-        icon: 'fas fa-cloud',
+        icon: Cloud,
         title: { es: 'Plataformas Cloud (AWS & Azure)', en: 'Cloud Platforms (AWS & Azure)' },
         description: {
             es: 'Despliegues multi-cloud diseñados para resiliencia, seguridad de menor privilegio y arquitecturas optimizadas en costo.',
@@ -18,7 +19,7 @@ export const skills: Skill[] = [
         tags: ['AWS (EC2, S3, IAM, VPC)', 'AWS Lambda & ECS Fargate', 'Azure Functions', 'Azure Static Web Apps', 'GitHub Actions CI/CD'],
     },
     {
-        icon: 'fas fa-project-diagram',
+        icon: Workflow,
         title: { es: 'Serverless & Arquitectura Cloud', en: 'Serverless & Cloud Architecture' },
         description: {
             es: 'Descomponer problemas en funciones desacopladas que reaccionan a eventos — sin servidores que gestionar, escala bajo demanda.',
@@ -27,7 +28,7 @@ export const skills: Skill[] = [
         tags: ['Lambda', 'S3 Triggers', 'API Gateway', 'ECS Fargate', 'Event-Driven Design'],
     },
     {
-        icon: 'fas fa-network-wired',
+        icon: Network,
         title: { es: 'Fundamentos de Redes (Orientado a DevOps)', en: 'Networking Fundamentals (DevOps-Oriented)' },
         description: {
             es: 'Entender cómo fluye el tráfico — diseño de VPC, límites de seguridad y patrones de enrutamiento resiliente para entornos cloud.',
@@ -36,7 +37,7 @@ export const skills: Skill[] = [
         tags: ['TCP/IP & DNS', 'HTTP/HTTPS', 'Subnets & Routing', 'Security Groups', 'Load Balancing'],
     },
     {
-        icon: 'fas fa-brain',
+        icon: Brain,
         title: { es: 'IA & Machine Learning', en: 'AI & Machine Learning' },
         description: {
             es: 'Integrar servicios de IA administrados en productos reales, respaldado por fundamentos sólidos de ML clásico.',
@@ -45,7 +46,7 @@ export const skills: Skill[] = [
         tags: ['AWS Rekognition', 'Azure OpenAI (GPT-4o-mini)', 'Azure Speech SDK', 'Amazon Polly', 'ML Fundamentals'],
     },
     {
-        icon: 'fas fa-microchip',
+        icon: Cpu,
         title: { es: 'IoT & Proyectos Hardware', en: 'IoT & Hardware Projects' },
         description: {
             es: 'Conectar el mundo físico y el digital — leer datos del mundo real, procesarlos en el dispositivo y actuar sobre ellos.',
@@ -54,7 +55,7 @@ export const skills: Skill[] = [
         tags: ['Arduino', 'Optical Sensors', 'Spectral Analysis', 'Embedded Systems'],
     },
     {
-        icon: 'fas fa-code',
+        icon: Code,
         title: { es: 'Ingeniería de Software & IaC', en: 'Software Engineering & IaC' },
         description: {
             es: 'Escribir código limpio, aprovisionar infraestructura como código y entregar servicios containerizados — el ciclo completo de entrega.',

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:pending": "node scripts/check-pending.mjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
