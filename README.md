@@ -1,102 +1,63 @@
-# 💼 Portafolio Personal – Andrés Rodas
+# Portafolio profesional – Andrés Rodas
 
-Este repositorio contiene mi **portafolio web personal**, donde presento mi perfil profesional, proyectos, habilidades y mi CV.
-El objetivo del sitio es servir como carta de presentación digital y punto central de contacto.
+Portafolio web de **Andrés Steven Rodas Janampa**, estudiante de Ingeniería Informática (UPCH) enfocado en **Cloud & AI**.
+Entrega del curso C1342 Desarrollo Profesional II.
 
-🔗 **Sitio en producción:**
-👉 [andresrodas.cloud](https://andresrodas.cloud)
-
----
-
-## 🚀 Tecnologías utilizadas
-
-* **React 19 + TypeScript** – componentes y lógica del frontend
-* **Vite** – build tool y dev server
-* **Tailwind CSS v4** – estilos utilitarios (tokens de diseño vía `@theme`)
-* **Framer Motion** – animaciones (entradas con stagger, glitch, scroll progress, hover/press)
-* **canvas-confetti** – celebración al copiar el email de contacto
-* **Vercel** – despliegue y hosting
-
-Estética: **retro-arcade/CRT** — fondo oscuro, glow neón (verde/cyan), efecto glitch, scanlines y paneles con esquinas cortadas estilo pixel-art.
+🔗 **Sitio en producción:** [andresrodas.cloud](https://www.andresrodas.cloud)
 
 ---
 
-## 🖥️ Desarrollo local
+## Secciones
+
+1. **Acerca de mí**: nombre completo, propósito del portafolio, plan de carrera y pasatiempos.
+2. **Desarrollo Profesional**: CV en PDF con vista previa, LinkedIn, trayectoria 2023 → 2027 (plegable) y habilidades técnicas.
+3. **Proyectos Académicos y Profesionales**: casos de estudio con filtros, evidencias, arquitectura, resultados y repositorios.
+4. **Competencias Blandas**: reflexión por competencia y un caso práctico en formato STAR.
+5. **Anexos**: reconocimientos y testimonios.
+
+## Tecnologías
+
+- **React 19 + TypeScript** con **Vite**; HTML prerenderizado en el build (SSG con `react-dom/server`) e hidratado en el cliente.
+- **Tailwind CSS v4**, con los tokens de diseño en `@theme` (`src/index.css`).
+- **Framer Motion** (`LazyMotion` + `domAnimation`): las animaciones usan solo transform/opacity y respetan `prefers-reduced-motion`.
+- **lucide-react** y **simple-icons** para los íconos; fuentes autoalojadas (Syne, Hanken Grotesk e IBM Plex Mono).
+- Despliegue en **Vercel**.
+
+## Desarrollo local
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173
-npm run build     # genera dist/
-npm run preview   # sirve el build de producción
+npm run dev            # http://localhost:5173
+npm run build          # tsc + vite build + prerender → dist/
+npm run preview        # sirve el build de producción
+npm run media          # optimiza los originales de public/raw/ → public/media/ (requiere ffmpeg)
+npm run check:pending  # lista el contenido marcado como pendiente en src/data/
 ```
 
----
-
-## 📁 Estructura del proyecto
+## Estructura
 
 ```text
-portfolio/
-│── index.html            # shell de Vite
-│── vite.config.ts
-│── src/
-│   │── main.tsx
-│   │── App.tsx
-│   │── index.css          # tokens de diseño (Tailwind v4 @theme) + keyframes
-│   │── context/           # LanguageContext (ES/EN)
-│   │── data/               # copy bilingüe, skills y proyectos (tipado)
-│   │── hooks/               # useScrollSpy
-│   │── components/          # Navbar, Footer, ProjectCard, overlays + ui/ (GlitchText, RetroPanel, Button)
-│   └── sections/             # Hero, About, Skills, Projects, Contact
-│── public/
-│   │── favicon.ico
-│   │── CV_Andres_Rodas_upch.pdf
-│   └── img/                 # imágenes y GIFs de proyectos
-│── README.md
+├── index.html                 # shell de Vite: meta, preload de fuentes/poster, <!--app-html-->
+├── scripts/
+│   ├── media.mjs              # public/raw → public/media (WebP/MP4/WebM)
+│   ├── prerender.mjs          # inyecta el HTML renderizado en dist/index.html
+│   └── check-pending.mjs
+├── src/
+│   ├── main.tsx · entry-server.tsx · App.tsx · index.css
+│   ├── data/                  # todo el contenido tipado (about, professional, projects, timeline, softSkills…)
+│   ├── components/            # Navbar, Footer, Timeline, SkillsCarousel, CaseStudyDialog, LiteYouTube… + ui/
+│   ├── sections/              # Hero, About, Professional, Projects, SoftSkills, Annexes
+│   ├── context/               # LanguageContext (ES; EN preparado pero oculto)
+│   └── hooks/                 # useScrollSpy
+└── public/
+    ├── CV_ANDRES_ES.pdf       # CV enlazado desde el sitio
+    ├── media/                 # imágenes y video optimizados (generados con npm run media)
+    ├── fonts/                 # fuentes autoalojadas
+    └── raw/                   # originales sin optimizar — en .gitignore, no se suben
 ```
 
----
+## Contacto
 
-## 🧩 Funcionalidades principales
-
-* Presentación personal y perfil profesional, con efecto glitch en el nombre
-* Sección de proyectos con detalle expandible al hover/tap
-* Descarga directa del CV
-* Toggle de idioma ES/EN
-* Barra de progreso de scroll y overlay CRT (scanlines)
-* Confetti al copiar el email de contacto
-* Diseño responsive (adaptado a desktop y mobile), animaciones con `prefers-reduced-motion` respetado
-
----
-
-## 📄 CV
-
-El currículum actualizado se encuentra incluido en el repositorio:
-
-📎 **CV_Andres_Rodas_upch.pdf**
-
----
-
-## 🛠️ Deploy
-
-El proyecto está desplegado automáticamente usando **Vercel**, lo que permite:
-
-* Actualizaciones rápidas
-* Alta disponibilidad
-* Integración directa con GitHub
-
----
-
-## 📌 Estado del proyecto
-
-🟢 **Activo**
-El portafolio se encuentra en constante mejora visual y funcional.
-
----
-
-## 📬 Contacto
-
-Si deseas contactarme o conocer más sobre mi trabajo, puedes hacerlo a través del portafolio web.
-
----
-
-✨ *Gracias por visitar este repositorio.*
+- Correo: me@andresrodas.cloud
+- LinkedIn: [linkedin.com/in/andresrodas18](https://www.linkedin.com/in/andresrodas18)
+- GitHub: [github.com/AndresRJ18](https://github.com/AndresRJ18)

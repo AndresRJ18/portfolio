@@ -8,50 +8,42 @@ Act as a **Senior Fullstack Engineer, Cloud Architect, and AI Systems Engineer**
 
 ## Project Overview
 
-React + TypeScript + Vite portfolio for Andrés Rodas, styled as a retro-arcade/CRT interface (neon glow, glitch text, scanlines, pixel-cut panels) with Tailwind CSS v4 and Framer Motion animations. Production domain: **https://www.andresrodas.cloud/** — custom domain connected to Vercel. Push to `main` → Vercel builds (`npm run build`) and auto-deploys `dist/`.
+React 19 + TypeScript + Vite portfolio for Andrés Rodas (course C1342 Desarrollo Profesional II, UPCH). Spanish-first, dark editorial design inspired by musicwave.ai. Production domain: **https://www.andresrodas.cloud/** (Vercel). Push to `main` → Vercel runs `npm run build` and deploys `dist/`.
+
+The rubric drives decisions: the navbar has exactly the five required sections, in order — Acerca de mí · Desarrollo Profesional · Proyectos Académicos y Profesionales · Competencias Blandas · Anexos. **Never invent data** (figures, dates, certificates, testimonials, reflections); mark gaps with a `PENDIENTE` comment in `src/data/` and ask Andrés.
 
 ## Development
 
 ```bash
 npm install
-npm run dev       # Vite dev server (default port 5173; add `-- --port 8080` to pin a port)
-npm run build     # tsc -b && vite build → dist/
-npm run preview   # serve the production build locally
+npm run dev            # Vite dev server (5173). Andrés's Chrome has a saved 67% zoom for "localhost" — use http://[::1]:<port> for screenshots.
+npm run build          # tsc -b && vite build && SSR build && scripts/prerender.mjs → dist/ (prerendered HTML, hydrated client)
+npm run preview        # serve dist/
+npm run media          # public/raw/* (git-ignored originals) → public/media/*.webp|mp4|webm (ffmpeg on PATH)
+npm run check:pending  # lists PENDIENTE markers in src/data (exit 1 if any)
 ```
 
 ## Architecture
 
-- **`index.html`** — Vite entry shell: meta/OG tags, Google Fonts (`Press Start 2P`, `VT323`, `IBM Plex Sans`, `IBM Plex Mono`), Font Awesome (brand/content icons), `<div id="root">`, `<script type="module" src="/src/main.tsx">`.
-- **`src/main.tsx`** — React root, imports `index.css`.
-- **`src/index.css`** — `@import "tailwindcss"` + `@theme` block defining all design tokens (colors, fonts, glow shadows, custom animations) and the `.clip-retro` / `.clip-retro-sm` pixel-corner utilities.
-- **`src/App.tsx`** — composition root: `LanguageProvider`, boot-flicker overlay, `ScrollProgressBar`, `ScanlineOverlay`, `Navbar`, the five `<section>` components, `Footer`.
-- **`src/context/LanguageContext.tsx`** — ES/EN state via React Context, persisted to `localStorage["language"]`; exposes `t(es, en)`.
-- **`src/data/`** — all copy and structured content as typed data (`content.ts` nav/hero/about/contact/footer, `skills.ts`, `projects.ts`). Components map over these — no hardcoded copy in JSX beyond labels pulled from here.
-- **`src/hooks/useScrollSpy.ts`** — tracks the active section id for nav highlighting.
-- **`src/components/`** — `Navbar`, `Footer`, `ProjectCard` (hover/tap-expand detail via local state + `AnimatePresence`), `ScanlineOverlay`, `ScrollProgressBar`, and `ui/` primitives (`GlitchText`, `RetroPanel`, `Button`, `SectionHeader`).
-- **`src/sections/`** — `Hero`, `About`, `Skills`, `Projects`, `Contact`, each a thin layout wrapper around the shared `ui/` primitives and Framer Motion `whileInView` stagger animations.
-- **`public/`** — served as-is at the site root: `favicon.ico`, `CV_Andres_Rodas_upch.pdf`, `img/` (profile photo + project screenshots/GIFs).
+- **`index.html`** — meta/OG, preloads for self-hosted fonts and the hero poster, `<div id="root"><!--app-html--></div>` (filled by `scripts/prerender.mjs`).
+- **`src/main.tsx`** — `hydrateRoot` when prerendered HTML exists, `createRoot` in dev. **`src/entry-server.tsx`** — `renderToString` for the build-time prerender. Anything reading `window`/`document` must do so in effects, not during render.
+- **`src/App.tsx`** — `LanguageProvider` → `LazyMotion(domAnimation, strict)` → `MotionConfig(reducedMotion="user")`; Navbar, sections, Footer. Use `m.*`, never `motion.*` (strict mode throws).
+- **`src/data/`** — all copy and content, typed: `site.ts` (sections/nav, hero, contact, CV href, socials), `about.ts`, `professional.ts` (CV + preview, certifications), `skills.ts`, `stack.ts` (marquee logos), `timeline.ts`, `projects.ts` (featured vs. "otros", case-study fields: gallery, architecture, results tables, video), `softSkills.ts` (reflections + STAR), `annexes.ts`. Andrés's own texts are used verbatim (proofread only).
+- **`src/sections/`** — `Hero` (background video after `load`, poster under reduced motion), `AboutSection`, `ProfessionalSection` (CV preview, collapsible `Timeline`, `SkillsCarousel`), `ProjectsSection` (filters + bento cards + `CaseStudyDialog`), `SoftSkillsSection`, `AnnexesSection`.
+- **`src/components/`** — `Navbar`, `Footer` (contact + copy-email confetti), `StackMarquee`, `Timeline`, `SkillsCarousel`, `CaseStudyDialog` (native `<dialog>`), `LiteYouTube` (thumbnail; youtube-nocookie iframe only on click), `ProjectVisual`, `ProjectBadges`, `ScrollProgressBar`, and `ui/` (`SectionHeader`, `Reveal`, `PendingNotice`, `BrandIcon`).
+- **`public/`** — `CV_ANDRES_ES.pdf`, `media/` (generated), `fonts/`, `robots.txt`, `sitemap.xml`. `public/raw/` holds originals and `_archivo/` (retired assets) — both git-ignored.
 
-## Design language — retro-arcade/CRT
+## Design language
 
-Dark void background (`--color-void`), neon green as primary accent, neon cyan as secondary, neon magenta reserved for the glitch effect only. `Press Start 2P` for short pixel-font moments (hero name, logo), `VT323` for section titles, `IBM Plex Mono` for nav/tags/technical labels, `IBM Plex Sans` for body copy (kept non-monospace for readability). Panels use `RetroPanel` (clipped pixel corners + neon border + glow shadow) instead of border-radius/blur shadows. `ScanlineOverlay` is a fixed full-viewport CRT effect (scanlines + vignette + flicker); `GlitchText` renders chromatic-aberration duplicate layers on short headings. All custom animations respect `prefers-reduced-motion` (global override in `index.css` collapses durations to ~0).
-
-## Key Patterns
-
-- **Bilingual**: all copy lives in `src/data/*.ts` as `{ es, en }` pairs; components read via `useLanguage().t(es, en)`. No `data-es`/`data-en` DOM attributes anymore (that was the old static-HTML approach).
-- **Section reveal**: Framer Motion `whileInView` + `staggerChildren` per section, `viewport={{ once: true }}` so it doesn't re-fire on scroll-back.
-- **Project cards**: `ProjectCard` owns its own hover/expand state (`onHoverStart`/`onHoverEnd` + click for touch) — no shared DOM overlay hack like the old vanilla-JS version.
-- **Confetti**: `canvas-confetti` fires on successful "copy email" in the Contact section.
+Near-black `#0a0a0a`; colour comes from imagery, grainy gradient bands (`.bg-grain-field`, warm variant `.bg-grain-warm` for Acerca de mí) and one accent pair sampled from the hero video: copper `--color-accent #f0b27a` + pale teal `--color-accent-2 #9ad7d3`. Type: **Syne** (display), **Hanken Grotesk** (body, ≥16px), **IBM Plex Mono** (labels). All text meets WCAG AA — check contrast before adding text on the grain bands (`text-muted` is not safe on the warm band; use `white/70`). Animations: transform/opacity only, `prefers-reduced-motion` respected (CSS global override + MotionConfig + manual `useReducedMotion` for scroll-linked values). Verify layout at 1440 and 390/360 px and that `innerWidth` equals the device width (wide words in Syne 800 can inflate the mobile layout viewport).
 
 ## Deployment
 
-- **Domain**: `andresrodas.cloud` — managed via Vercel custom domain (DNS configured at registrar).
-- **Flow**: `git push origin main` → Vercel detects the Vite framework preset, runs `npm run build`, deploys `dist/` with SSL. **After the first push post-migration, confirm in the Vercel dashboard that the framework preset auto-detected as Vite** (build command `npm run build` / output directory `dist`) — this repo previously had no build step.
-- If adding subdomains (e.g. `api.andresrodas.cloud`), configure in Vercel project settings + registrar DNS.
+- `git push origin main` → Vercel (Vite preset, `npm run build`, output `dist/`). Andrés pushes himself; don't commit or push unless asked.
+- Custom domain `andresrodas.cloud` via Vercel; subdomains are configured in Vercel + registrar DNS.
 
 ## Future Considerations
 
-When evolving this project toward production-grade (e.g. adding a backend, blog, or API):
-- Consider **Next.js** if SSR/SEO-per-route or a backend becomes necessary — the current Vite SPA is fine for a single-page portfolio.
-- For any cloud infra additions: default to Terraform (HCL), include IAM least-privilege and observability (CloudWatch / Azure Monitor).
-- For CI/CD beyond Vercel: GitHub Actions with blue/green or rolling deploy strategy.
+- Next.js only if per-route SSR or a backend becomes necessary.
+- Cloud infra additions: Terraform (HCL), IAM least-privilege, observability (CloudWatch / Azure Monitor).
+- CI/CD beyond Vercel: GitHub Actions with blue/green or rolling deploys.

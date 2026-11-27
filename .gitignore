@@ -13,3 +13,6 @@ dist-ssr/
 *.njsproj
 *.sln
 *.sw?
+
+# Originales sin optimizar (se procesan con `npm run media` a public/media/)
+public/raw/

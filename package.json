@@ -5,16 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "check:pending": "node scripts/check-pending.mjs"
+    "check:pending": "node scripts/check-pending.mjs",
+    "media": "node scripts/media.mjs"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
     "canvas-confetti": "^1.9.4",
     "framer-motion": "^13.4.0",
     "lucide-react": "^1.47.0",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "simple-icons": "^16.38.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",

@@ -12,21 +12,5 @@ export interface Bi {
 /** Any icon component (lucide-react or our BrandIcon wrappers). */
 export type Icon = ComponentType<SVGProps<SVGSVGElement> & { size?: number | string }>;
 
-export interface Link {
-    label: Bi;
-    href: string;
-    icon?: Icon;
-}
-
-export interface Evidence {
-    type: 'image' | 'diagram' | 'video';
-    src: string;
-    alt: Bi;
-    caption?: Bi;
-}
-
-/**
- * Marker for content still owed by Andrés. `npm run check:pending` lists every
- * occurrence under src/data; it is wired into the build before the final merge.
- */
-export const PENDING = 'PENDIENTE';
+// Content still owed by Andrés is flagged with a pending-marker comment in src/data;
+// `npm run check:pending` (scripts/check-pending.mjs) lists every occurrence.

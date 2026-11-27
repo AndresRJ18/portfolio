@@ -14,8 +14,10 @@ export interface Certification {
 export const cv = {
     targetRole: { es: 'Practicante Cloud & AI Engineer' } as Bi,
     pdf: cvHref,
-    /** PENDIENTE (F2): miniatura de la página 1 del CV web. */
-    preview: undefined as string | undefined,
+    /** Page-1 preview rendered from the PDF (scripts/media.mjs). */
+    preview: { src: '/media/cv-preview-900.webp', srcSet: '/media/cv-preview-480.webp 480w, /media/cv-preview-900.webp 900w', width: 900, height: 1270 },
+    pages: 2,
+    updated: { es: 'Noviembre 2026' } as Bi,
 };
 
 /** Taken from the current CV. PDFs / credential URLs are still owed (public/certs is empty). */

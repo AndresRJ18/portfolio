@@ -8,11 +8,10 @@ const dir = fileURLToPath(new URL('../src/data/', import.meta.url));
 const hits = [];
 
 for (const file of readdirSync(dir)) {
-    if (file === 'types.ts') continue; // defines the marker itself
     readFileSync(join(dir, file), 'utf8')
         .split('\n')
         .forEach((line, i) => {
-            if (line.includes('PENDIENTE') || /\bPENDING\b/.test(line)) hits.push(`src/data/${file}:${i + 1}  ${line.trim()}`);
+            if (line.includes('PENDIENTE')) hits.push(`src/data/${file}:${i + 1}  ${line.trim()}`);
         });
 }
 

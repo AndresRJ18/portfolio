@@ -1,4 +1,4 @@
-import { Brain, Cloud, Mail, Server } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/ui/BrandIcon';
 import type { Bi, Icon } from './types';
 
@@ -7,12 +7,12 @@ export const I18N_ENABLED = false;
 
 export const socials = {
     github: 'https://github.com/AndresRJ18',
-    linkedin: 'https://www.linkedin.com/in/andres-rodas-802309272',
+    linkedin: 'https://www.linkedin.com/in/andresrodas18',
     email: 'me@andresrodas.cloud',
 };
 
-/** CV currently served. Replaced in F2 by the web version without phone number. */
-export const cvHref = '/CV_Andres_Rodas_upch.pdf';
+/** CV en español (Overleaf, 27/11): adaptado a Practicante Cloud & AI Engineer, con foto y sin teléfono. */
+export const cvHref = '/CV_ANDRES_ES.pdf';
 
 /** The five mandatory sections, in rubric order. `label` = short navbar text, `title` = full section heading. */
 export const sections = [
@@ -29,18 +29,20 @@ export function section(id: SectionId) {
     return sections.find((s) => s.id === id)!;
 }
 
+export const cvCta = { es: 'Descargar CV', en: 'Download CV' } as Bi;
+
 export const hero = {
-    badge: { es: 'Disponible para oportunidades', en: 'Available for opportunities' } as Bi,
-    greeting: { es: 'Hola, soy', en: "Hi, I'm" } as Bi,
     name: 'Andrés Rodas',
     positioning: { es: 'Estudiante de Ingeniería Informática | Cloud & AI', en: 'Informatics Engineering Student | Cloud & AI' } as Bi,
-    description: {
-        es: 'Estudio Ingeniería Informática en la UPCH y llevo modelos de machine learning a la nube. Mis modelos de predicción de calidad del aire para cuatro ciudades de Latinoamérica están desplegados en AWS Fargate.',
-    } as Bi,
-    ctaCV: { es: 'Ver CV', en: 'View CV' } as Bi,
+    ctaPrimary: { label: { es: 'Ver proyectos', en: 'See projects' } as Bi, href: '#proyectos' },
+    ctaSecondary: { label: { es: 'Contactar', en: 'Get in touch' } as Bi, href: '#contacto' },
+    video: {
+        webm: '/media/hero.webm',
+        mp4: '/media/hero.mp4',
+        poster: '/media/hero-poster.webp',
+        posterSmall: '/media/hero-poster-640.webp',
+    },
 };
-
-export const floatingTech: Icon[] = [Cloud, Brain, Server];
 
 export const contact = {
     title: { es: 'Contacto', en: 'Contact' } as Bi,
@@ -50,7 +52,7 @@ export const contact = {
     copied: { es: '¡Correo copiado!', en: 'Email copied!' } as Bi,
     methods: [
         { icon: Mail as Icon, label: { es: 'Correo', en: 'Email' } as Bi, value: socials.email, href: `mailto:${socials.email}`, copy: true },
-        { icon: LinkedinIcon as Icon, label: { es: 'LinkedIn', en: 'LinkedIn' } as Bi, value: 'andres-rodas-802309272', href: socials.linkedin, copy: false },
+        { icon: LinkedinIcon as Icon, label: { es: 'LinkedIn', en: 'LinkedIn' } as Bi, value: 'andresrodas18', href: socials.linkedin, copy: false },
         { icon: GithubIcon as Icon, label: { es: 'GitHub', en: 'GitHub' } as Bi, value: 'AndresRJ18', href: socials.github, copy: false },
     ],
 };

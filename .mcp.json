@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "shadcn@latest",
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}

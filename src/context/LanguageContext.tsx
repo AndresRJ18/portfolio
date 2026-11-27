@@ -15,7 +15,7 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 export function LanguageProvider({ children }: { children: ReactNode }) {
     const [lang, setLangState] = useState<Lang>(() => {
         // While the toggle is hidden, ignore a stale "en" in localStorage so nobody gets stuck in English.
-        if (!I18N_ENABLED) return 'es';
+        if (!I18N_ENABLED || typeof window === 'undefined') return 'es'; // also the prerender path
         return localStorage.getItem('language') === 'en' ? 'en' : 'es';
     });
 

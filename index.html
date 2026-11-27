@@ -6,7 +6,7 @@
     <title>Andrés Rodas | Estudiante de Ingeniería Informática · Cloud & AI</title>
     <meta name="description" content="Portafolio de Andrés Rodas, estudiante de Ingeniería Informática en la UPCH enfocado en Cloud & AI: despliegue de modelos de machine learning, infraestructura como código y servicios en AWS y Azure.">
     <meta name="author" content="Andrés Steven Rodas Janampa">
-    <meta name="theme-color" content="#0a0a12">
+    <meta name="theme-color" content="#0a0a0a">
     <link rel="canonical" href="https://www.andresrodas.cloud/">
 
     <meta property="og:type" content="website">
@@ -17,12 +17,14 @@
     <meta name="twitter:card" content="summary">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Self-hosted fonts (see src/index.css). Only the two above-the-fold faces are preloaded. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/syne-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/hanken-grotesk-latin.woff2" crossorigin>
+    <!-- Hero poster is the LCP candidate on first paint (and the only media under reduced motion). -->
+    <link rel="preload" as="image" type="image/webp" href="/media/hero-poster.webp" imagesrcset="/media/hero-poster-640.webp 640w, /media/hero-poster.webp 1280w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
