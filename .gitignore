@@ -1,0 +1,18 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.tsbuildinfo
+
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Originales sin optimizar (se procesan con `npm run media` a public/media/)
+public/raw/

@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/*
+ * Self-hosted variable fonts (latin subset covers Spanish), preloaded from index.html.
+ * The "Fallback" faces are local Arial scaled to each font's measured width, so the swap
+ * doesn't reflow the hero (Syne gets much wider as it gets bolder, hence one face per weight).
+ */
+@font-face {
+    font-family: 'Syne';
+    src: url('/fonts/syne-latin.woff2') format('woff2');
+    font-weight: 400 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hanken Grotesk';
+    src: url('/fonts/hanken-grotesk-latin.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne Fallback';
+    src: local('Arial Bold'), local('Arial-BoldMT'), local('Arial');
+    font-weight: 800;
+    size-adjust: 164.7%;
+}
+
+@font-face {
+    font-family: 'Syne Fallback';
+    src: local('Arial Bold'), local('Arial-BoldMT'), local('Arial');
+    font-weight: 700;
+    size-adjust: 113.7%;
+}
+
+@font-face {
+    font-family: 'Syne Fallback';
+    src: local('Arial'), local('ArialMT');
+    font-weight: 400 600;
+    size-adjust: 104%;
+}
+
+@font-face {
+    font-family: 'Hanken Grotesk Fallback';
+    src: local('Arial'), local('ArialMT');
+    size-adjust: 99.5%;
+}
+
+@theme {
+    /* ── Surfaces ─────────────────────────────────────────── */
+    --color-void: #0a0a0a;
+    --color-panel: #121212;
+    --color-panel-alt: #1a1a1a;
+    --color-hairline: rgb(255 255 255 / 0.08);
+
+    /* ── Accent: copper + pale teal, sampled from the hero video. Colour otherwise comes from imagery. ── */
+    --color-accent: #f0b27a;
+    --color-accent-2: #9ad7d3;
+
+    /* Contrast vs #0a0a0a — see commit notes; all ≥ AA for body text. */
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #b4b4b4;
+    --color-text-muted: #8f8f8f;
+
+    --font-display: 'Syne', 'Syne Fallback', sans-serif;
+    --font-body: 'Hanken Grotesk', 'Hanken Grotesk Fallback', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    --animate-marquee: marquee 40s linear infinite;
+}
+
+@layer base {
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: var(--color-void);
+        color: var(--color-text-primary);
+        font-family: var(--font-body);
+        line-height: 1.65;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* Native #anchor jumps land below the fixed navbar. */
+    section[id] {
+        scroll-margin-top: 5rem;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+}
+
+@layer utilities {
+    .text-gradient {
+        background: linear-gradient(90deg, var(--color-accent), #f6dcc0 50%, var(--color-accent-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /*
+     * Grainy colour field (after MusicWave's testimonials band), in the hero video's palette:
+     * deep teal base, copper glow, fading into the page at top and bottom. Pure CSS — no image request.
+     */
+    .bg-grain-field {
+        position: relative;
+        isolation: isolate;
+        background:
+            linear-gradient(to bottom, var(--color-void), transparent 22%, transparent 78%, var(--color-void)),
+            radial-gradient(55% 60% at 18% 45%, rgb(240 178 122 / 0.38), transparent 70%),
+            radial-gradient(50% 65% at 85% 55%, rgb(64 168 158 / 0.42), transparent 72%),
+            linear-gradient(120deg, #0f2423, #173a38 45%, #1f2c33);
+    }
+    /* Project covers without a screenshot: same grain over an inline gradient. */
+    .bg-grain-cover {
+        isolation: isolate;
+    }
+    .bg-grain-field::before,
+    .bg-grain-cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0.32;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /*
+     * Warm variant (Acerca de mí): a soft, clearly-orange field. Measured: text-secondary ≥ 4.9:1 even
+     * at the glow peak; text-muted is NOT safe here, so labels in this section use white/70 instead.
+     */
+    .bg-grain-field.bg-grain-warm {
+        background:
+            linear-gradient(to bottom, var(--color-void), transparent 14%, transparent 86%, var(--color-void)),
+            radial-gradient(45% 50% at 8% 20%, rgb(240 160 100 / 0.2), transparent 70%),
+            radial-gradient(45% 55% at 95% 75%, rgb(230 120 70 / 0.16), transparent 72%),
+            linear-gradient(135deg, #2a130a, #3d1c0d 40%, #361a0c 70%, #22110a);
+    }
+
+    /* Card silhouette with the top-right corner cut, as in the reference. */
+    .clip-chamfer {
+        clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%);
+    }
+
+    /* Soft fade at both ends of horizontally scrolling strips. */
+    .mask-fade-x {
+        mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* CSS animations only — Framer Motion is covered by <MotionConfig reducedMotion="user"> in App. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
