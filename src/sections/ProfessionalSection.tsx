@@ -4,7 +4,6 @@ import { section, socials } from '../data/site';
 import { useLanguage } from '../context/LanguageContext';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { Reveal } from '../components/ui/Reveal';
-import { PendingNotice } from '../components/ui/PendingNotice';
 import { LinkedinIcon } from '../components/ui/BrandIcon';
 import { SkillsCarousel } from '../components/SkillsCarousel';
 import { Timeline } from '../components/Timeline';
@@ -106,12 +105,6 @@ export function ProfessionalSection() {
                 </div>
             </div>
 
-            <div className="mx-auto mt-20 max-w-7xl px-5 lg:px-8">
-                <PendingNotice
-                    phase="F2"
-                    items={['Certificaciones con enlace o PDF de evidencia']}
-                />
-            </div>
         </section>
     );
 }

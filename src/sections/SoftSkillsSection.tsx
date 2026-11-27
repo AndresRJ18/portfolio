@@ -3,7 +3,6 @@ import { softSkills, softSkillsIntro, starCase } from '../data/softSkills';
 import { useLanguage } from '../context/LanguageContext';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { Reveal } from '../components/ui/Reveal';
-import { PendingNotice } from '../components/ui/PendingNotice';
 
 const meta = section('competencias-blandas');
 
@@ -16,7 +15,6 @@ const STAR = [
 
 export function SoftSkillsSection() {
     const { t } = useLanguage();
-    const missingReflections = softSkills.filter((s) => !s.reflection).map((s) => s.name.es);
 
     return (
         <section id={meta.id} aria-labelledby={`${meta.id}-title`} className="px-5 py-28 lg:px-8 lg:py-36">
@@ -70,29 +68,13 @@ export function SoftSkillsSection() {
                                         </span>
                                         <span className="font-display text-lg font-semibold">{label}</span>
                                     </p>
-                                    {text ? (
-                                        <p className="mt-3 leading-relaxed text-white/85">{t(text.es, text.en)}</p>
-                                    ) : (
-                                        <p className="mt-3 text-sm italic text-white/70">Texto pendiente (lo escribe Andrés).</p>
-                                    )}
+                                    {text && <p className="mt-3 leading-relaxed text-white/85">{t(text.es, text.en)}</p>}
                                 </li>
                             );
                         })}
                     </ol>
                 </Reveal>
 
-                {(missingReflections.length > 0 || !softSkillsIntro) && (
-                    <div className="mt-14">
-                        <PendingNotice
-                            phase="F4"
-                            items={[
-                                ...(!softSkillsIntro ? ['Reflexión general sobre tus competencias blandas (3–5 líneas)'] : []),
-                                ...(missingReflections.length ? [`Reflexión breve para: ${missingReflections.join(', ')}`] : []),
-                                'Caso STAR de la clase en Ancón: situación, tarea, acción y resultado',
-                            ]}
-                        />
-                    </div>
-                )}
             </div>
         </section>
     );

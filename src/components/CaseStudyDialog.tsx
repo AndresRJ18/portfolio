@@ -5,7 +5,6 @@ import { useLanguage } from '../context/LanguageContext';
 import { LiteYouTube } from './LiteYouTube';
 import { ProjectVisual } from './ProjectVisual';
 import { ProjectBadges } from './ProjectBadges';
-import { PendingNotice } from './ui/PendingNotice';
 
 interface CaseStudyDialogProps {
     project: Project | null;
@@ -95,11 +94,6 @@ export function CaseStudyDialog({ project, playVideo, onClose }: CaseStudyDialog
                                     ))}
                                 </ul>
                                 {project.note && <p className="mt-5 text-sm text-text-muted">{t(project.note.es, project.note.en)}</p>}
-                                {project.pendingEvidence && (
-                                    <div className="mt-8">
-                                        <PendingNotice phase="evidencias" items={project.pendingEvidence} />
-                                    </div>
-                                )}
                             </div>
 
                             <aside className="space-y-8">
