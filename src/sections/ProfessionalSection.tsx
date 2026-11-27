@@ -4,7 +4,6 @@ import { section, socials } from '../data/site';
 import { useLanguage } from '../context/LanguageContext';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { Reveal } from '../components/ui/Reveal';
-import { PendingNotice } from '../components/ui/PendingNotice';
 import { LinkedinIcon } from '../components/ui/BrandIcon';
 import { SkillsCarousel } from '../components/SkillsCarousel';
 import { Timeline } from '../components/Timeline';
@@ -87,7 +86,7 @@ export function ProfessionalSection() {
                 </div>
 
                 <div className="mt-24 lg:mt-32">
-                    <h3 className="font-display text-[clamp(1.6rem,3.5vw,2.6rem)] font-extrabold leading-tight">Trayectoria</h3>
+                    <h3 className="font-display break-words text-[clamp(1.35rem,5.5vw,2.6rem)] font-extrabold leading-tight">Trayectoria</h3>
                     <p className="mt-3 max-w-xl text-text-secondary">De mi ingreso a la UPCH en 2023 al egreso previsto en diciembre de 2027.</p>
                     <div className="mt-14">
                         <Timeline />
@@ -98,7 +97,7 @@ export function ProfessionalSection() {
             {/* Full-bleed colour band for the skills carousel. */}
             <div className="bg-grain-field mt-20 py-24 lg:mt-28">
                 <div className="mx-auto max-w-7xl px-5 lg:px-8">
-                    <h3 className="font-display text-[clamp(1.6rem,3.5vw,2.6rem)] font-extrabold leading-tight text-white">Habilidades técnicas</h3>
+                    <h3 className="font-display break-words text-[clamp(1.35rem,5.5vw,2.6rem)] font-extrabold leading-tight text-white">Habilidades técnicas</h3>
                     <p className="mt-3 max-w-xl text-white/80">Lo que uso para llevar modelos e infraestructura a producción.</p>
                 </div>
                 <div className="mt-10">
@@ -106,12 +105,6 @@ export function ProfessionalSection() {
                 </div>
             </div>
 
-            <div className="mx-auto mt-20 max-w-7xl px-5 lg:px-8">
-                <PendingNotice
-                    phase="F2"
-                    items={['Certificaciones con enlace o PDF de evidencia']}
-                />
-            </div>
         </section>
     );
 }

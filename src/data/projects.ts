@@ -68,7 +68,7 @@ export const projects: Project[] = [
         subtitle: { es: 'Sistema portátil de detección de pesticidas en fresas mediante espectroscopía VIS/NIR' },
         context: { es: 'Proyectos de Ingeniería I · UPCH · 2025-II' },
         categories: ['ia', 'academico'],
-        role: { es: 'Líder del componente de machine learning en un equipo interdisciplinario de 6 personas' },
+        role: { es: 'Desarrollador del componente de machine learning en un equipo interdisciplinario de 6 personas' },
         highlights: [
             {
                 es: 'Preprocesamiento, PCA y clasificadores SVM, Random Forest y redes neuronales sobre las lecturas del sensor AS7343 (18 canales, 350–1000 nm) para detectar profenofos en fresas (ODS 12.4).',
@@ -201,13 +201,14 @@ export const projects: Project[] = [
         id: 'nova-ai',
         featured: true,
         title: 'NovA AI',
-        subtitle: { es: 'Coach de entrevistas técnicas bilingüe para roles de Cloud, DevOps y ML' },
-        context: { es: 'Amazon Nova Hackathon · 2026' },
+        subtitle: { es: 'Coach de entrevistas técnicas bilingüe para ingenieros Cloud, DevOps y ML de Latinoamérica' },
+        context: { es: 'Amazon Nova Hackathon · marzo de 2026' },
         categories: ['cloud', 'ia'],
         highlights: [
-            { es: 'Entrevistas simuladas en inglés y español con Amazon Nova 2 Lite y lógica de dificultad adaptativa.' },
+            { es: 'Entrevistas simuladas en español e inglés con Amazon Nova 2 Lite: scoring en tiempo real, dificultad adaptativa y reportes PDF.' },
             { es: 'Voz en tiempo real vía WebSockets con Amazon Nova Sonic (streaming de audio PCM).' },
             { es: 'Backend FastAPI en AWS App Runner con DynamoDB y autenticación Cognito (PKCE).' },
+            { es: 'Publicado en AWS Builder Center el 15 de marzo de 2026.' },
         ],
         stack: ['Nova 2 Lite', 'Nova Sonic', 'FastAPI', 'App Runner', 'DynamoDB', 'Cognito'],
         links: [
@@ -263,7 +264,7 @@ export const projects: Project[] = [
         subtitle: { es: 'Sistema de procesos electorales con FastAPI y React. Rol: testing y QA con SonarCloud y GitHub Actions.' },
         context: { es: 'MC656 Ingeniería de Software · UNICAMP · 2026-2' },
         categories: ['academico'],
-        role: { es: 'Testing y aseguramiento de calidad (QA) del equipo' },
+        role: { es: 'Testing y aseguramiento de calidad (QA) en un equipo Scrum de 5 personas' },
         highlights: [
             { es: 'Plataforma de votación para procesos de decisión colectiva, alineada con el ODS 16 (paz, justicia e instituciones sólidas).' },
             { es: 'Me encargué de las pruebas y la calidad: análisis de código y cobertura de tests con SonarCloud.' },

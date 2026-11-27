@@ -31,13 +31,13 @@ export const softSkills: SoftSkill[] = [
         id: 'liderazgo',
         icon: Target,
         name: { es: 'Liderazgo' },
-        evidence: { es: 'Lideré el componente de machine learning de QUIM-DETECT dentro de un equipo interdisciplinario de 6 personas.' },
+        evidence: { es: 'Wilmer Herrera, con quien trabajo en proyectos universitarios desde hace cuatro años, me describe como “un excelente líder de proyectos” (ver Testimonios).' },
     },
     {
         id: 'equipo',
         icon: Users,
         name: { es: 'Trabajo en equipo' },
-        evidence: { es: 'Fui responsable de testing y QA en MC656 (UNICAMP) y desarrollador en el grafo de conocimiento clínico, un equipo de 5 personas.' },
+        evidence: { es: 'Fui responsable de QA y testing en un equipo Scrum de 5 en MC656 (UNICAMP), desarrollador en el grafo de conocimiento clínico (equipo de 5) y desarrollé el componente de ML de QUIM-DETECT en un equipo de 6.' },
     },
     {
         id: 'comunicacion',
