@@ -60,7 +60,6 @@ if (existsSync(raw('cv-preview-raw.png'))) {
 for (const [name, file] of [
     ['cade', 'CADE-YO.jpg'],
     ['veyro', 'hackatonVEYRO.jpeg'],
-    ['quim', 'QUIMDETECT-TRAYECTORIA.jpeg'],
     ['kiwie', 'SILVERPRICE-KIWIE-TRAYECTORIA.jpg'],
 ]) {
     if (!existsSync(raw(file))) continue;

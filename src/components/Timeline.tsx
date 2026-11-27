@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from 'react';
 import { AnimatePresence, m, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { Award, ChevronDown, FlaskConical, GraduationCap, Sparkles } from 'lucide-react';
-import { milestones, timelineGallery, type Milestone } from '../data/timeline';
+import { milestones, type Milestone } from '../data/timeline';
 import { useLanguage } from '../context/LanguageContext';
 
 const kindIcon = { academico: GraduationCap, reconocimiento: Award, proyecto: FlaskConical, programa: Sparkles } as const;
@@ -41,10 +41,9 @@ function Item({ ms }: { ms: Milestone }) {
  *  - Collapsed (default): key milestones only; expanded: everything. Toggle works both ways.
  *  - A copper line draws itself with scroll progress (scaleY only); fully drawn under reduced motion.
  *  - Desktop: year column (sticky) + items; mobile: year heading above its items.
- *  - Photos are shown in a gallery below the timeline, not inside the items.
+ *  - Text only: photos appear once, in Anexos → Reconocimientos.
  */
 export function Timeline() {
-    const { t } = useLanguage();
     const ref = useRef<HTMLDivElement>(null);
     const toggleRef = useRef<HTMLButtonElement>(null);
     const scrollAfterCollapse = useRef(false);
@@ -118,30 +117,6 @@ export function Timeline() {
                 </button>
             </div>
 
-            {/* Photo gallery below the timeline. */}
-            <ul className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
-                {timelineGallery.map((g) => (
-                    <li key={g.src}>
-                        <figure className="group">
-                            <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
-                                <img
-                                    src={g.src}
-                                    srcSet={g.srcSet}
-                                    sizes="(min-width: 768px) 25vw, 50vw"
-                                    alt={t(g.alt.es, g.alt.en)}
-                                    width={g.width}
-                                    height={g.height}
-                                    loading="lazy"
-                                    decoding="async"
-                                    style={{ objectPosition: g.position }}
-                                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                                />
-                            </div>
-                            <figcaption className="mt-2 font-mono text-xs text-text-muted">{t(g.caption.es, g.caption.en)}</figcaption>
-                        </figure>
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 }

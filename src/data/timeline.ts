@@ -15,7 +15,7 @@ export interface Milestone {
     featured?: boolean;
 }
 
-/** Confirmed by Andrés on 26–27/11/2026. Photos live in the gallery below the timeline, not in the items. */
+/** Confirmed by Andrés on 26–27/11/2026. Text only — photos appear once, in Anexos → Reconocimientos. */
 export const milestones: Milestone[] = [
     { id: 'ingreso', year: 2023, date: { es: '2023' }, order: 2023.0, kind: 'academico', featured: true, title: { es: 'Ingreso a Ingeniería Informática' }, detail: { es: 'Universidad Peruana Cayetano Heredia, Lima.' } },
 
@@ -135,41 +135,3 @@ export const milestones: Milestone[] = [
 
     { id: 'egreso', year: 2027, date: { es: 'Dic. 2027' }, order: 2027.12, kind: 'academico', featured: true, title: { es: 'Egreso previsto' } },
 ].sort((a, b) => a.order - b.order) as Milestone[];
-
-/** Photo strip under the timeline (Andrés, 27/11: photos out of the items, shown below). */
-export const timelineGallery: { src: string; srcSet: string; width: number; height: number; alt: Bi; caption: Bi; position?: string }[] = [
-    {
-        src: '/media/tl-quim-1200.webp',
-        srcSet: '/media/tl-quim-640.webp 640w, /media/tl-quim-1200.webp 1200w',
-        width: 1200,
-        height: 1314,
-        alt: { es: 'Equipo de QUIM-DETECT junto al prototipo y su póster en la feria de proyectos' },
-        caption: { es: 'QUIM-DETECT2 · 2025-II' },
-        position: 'center 35%',
-    },
-    {
-        src: '/media/tl-kiwie-1200.webp',
-        srcSet: '/media/tl-kiwie-640.webp 640w, /media/tl-kiwie-1200.webp 1200w',
-        width: 1200,
-        height: 1600,
-        alt: { es: 'Diploma Silver Prize de KIWIE 2026 y medalla de plata' },
-        caption: { es: 'KIWIE 2026 · Corea del Sur' },
-        position: 'center 40%',
-    },
-    {
-        src: '/media/tl-cade-1200.webp',
-        srcSet: '/media/tl-cade-640.webp 640w, /media/tl-cade-1200.webp 1200w',
-        width: 1200,
-        height: 900,
-        alt: { es: 'Andrés Rodas con su credencial de participante en CADE Universitario 2026' },
-        caption: { es: 'CADE Universitario 2026' },
-    },
-    {
-        src: '/media/tl-veyro-1200.webp',
-        srcSet: '/media/tl-veyro-640.webp 640w, /media/tl-veyro-1200.webp 1200w',
-        width: 1200,
-        height: 798,
-        alt: { es: 'Foto grupal de los participantes del hackathon VEYRO' },
-        caption: { es: 'Hackathon VEYRO · 2025' },
-    },
-];
